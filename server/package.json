@@ -1,7 +1,7 @@
 {
-  "name": "mern-server",
+  "name": "polling-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A polling application built with Mongodb, Graphql, Express.js, React, and Node.js",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
