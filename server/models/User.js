@@ -19,12 +19,6 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  thoughts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Thought',
-    },
-  ],
   polls: [
     {
       type: Schema.Types.ObjectId,
