@@ -1,3 +1,5 @@
+// Reminder we can use "thoughts" for user comments on each poll. If we do return to the activity and 
+// copy the thoughts.js file and put back in the models folder.
 const { User, Thought } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
