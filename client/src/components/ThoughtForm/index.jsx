@@ -1,25 +1,21 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { ADD_THOUGHT } from "../../utils/mutations";
+import { QUERY_THOUGHTS, QUERY_ME } from "../../utils/queries";
 
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 
 const ThoughtForm = () => {
-  const [thoughtText, setThoughtText] = useState('');
+  const [thoughtTitle, setThoughtTitle] = useState("");
+  const [thoughtThis, setThoughtThis] = useState("");
+  const [thoughtThat, setThoughtThat] = useState("");
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation
-  (ADD_THOUGHT, {
-    refetchQueries: [
-      QUERY_THOUGHTS,
-      'getThoughts',
-      QUERY_ME,
-      'me'
-    ]
+  const [addThought, { error }] = useMutation(ADD_THOUGHT, {
+    refetchQueries: [QUERY_THOUGHTS, "getThoughts", QUERY_ME, "me"],
   });
 
   const handleFormSubmit = async (event) => {
@@ -28,12 +24,17 @@ const ThoughtForm = () => {
     try {
       const { data } = await addThought({
         variables: {
-          thoughtText,
+          thoughtTitle,
+          thoughtThis,
+          thoughtThat,
           thoughtAuthor: Auth.getProfile().data.username,
         },
       });
 
-      setThoughtText('');
+      // Reset form fields
+      setThoughtTitle("");
+      setThoughtThis("");
+      setThoughtThat("");
     } catch (err) {
       console.error(err);
     }
@@ -42,43 +43,71 @@ const ThoughtForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'thoughtText' && value.length <= 280) {
-      setThoughtText(value);
-      setCharacterCount(value.length);
+    // Update state based on input name
+    if (name === "thoughtTitle" && value.length <= 48) {
+      setThoughtTitle(value);
+    } else if (name === "thoughtThis" && value.length <= 24) {
+      setThoughtThis(value);
+    } else if (name === "thoughtThat" && value.length <= 24) {
+      setThoughtThat(value);
     }
+
+    // Calculate total character count
+    setCharacterCount(
+      thoughtTitle.length + thoughtThis.length + thoughtThat.length
+    );
   };
+
+  const isSubmitDisabled = !thoughtTitle || !thoughtThis || !thoughtThat;
 
   return (
     <div>
-      <h3>Unlock endless choices.</h3>
+      <h3>Create poll</h3>
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
-          >
-            Character Count: {characterCount}/280
-          </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+            <div className="col-12">
+              <input
+                type="text"
+                name="thoughtTitle"
+                placeholder="Title"
+                value={thoughtTitle}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
-              ></textarea>
+              />
+            </div>
+            <div className="col-12">
+              <input
+                type="text"
+                name="thoughtThis"
+                placeholder="Ex: Apple"
+                value={thoughtThis}
+                className="form-input w-100"
+                onChange={handleChange}
+              ></input>
+            </div>
+            <div className="col-12">
+              <input
+                type="text"
+                name="thoughtThat"
+                placeholder="Ex: Android"
+                value={thoughtThat}
+                className="form-input w-100"
+                onChange={handleChange}
+              ></input>
             </div>
 
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Thought
+            <div className="col-12">
+              <button
+                className="btn btn-primary btn-block py-3"
+                type="submit"
+                disabled={isSubmitDisabled}
+              >
+                Submit
               </button>
             </div>
             {error && (
@@ -90,9 +119,9 @@ const ThoughtForm = () => {
         </>
       ) : (
         <p>
-          {' '}
+          {" "}
           <Link to="/login">Login</Link> or <Link to="/signup">Signup </Link>
-          to cast your vote.
+          to create a poll or cast your vote.
         </p>
       )}
     </div>
