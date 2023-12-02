@@ -5,7 +5,7 @@ const typeDefs = `
     email: String
     password: String
     thoughts: [Thought]!
-    polls: [Polls!]
+    polls: [Poll!]
   }
 
   type Thought {
