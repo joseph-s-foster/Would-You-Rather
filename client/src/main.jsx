@@ -30,9 +30,6 @@ const router = createBrowserRouter([
       }, {
         path: '/me',
         element: <PollPage />
-      }, {
-        path: '/thoughts/:thoughtId',
-        element: <SingleThought />
       }
     ]
   },
