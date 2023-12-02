@@ -22,6 +22,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    getPolls: async () => Polls.find().populate('users'),
   },
 
   Mutation: {
@@ -115,6 +116,39 @@ const resolvers = {
       throw AuthenticationError;
     },
   },
+  createPoll: async (_, { name, thisPoll, thatPoll, title }) => {
+    const poll = new Polls({ name, thisPoll, thatPoll, title });
+    await poll.save();
+    return poll;
+  },
+  voteOnPoll: async (_, { pollId, option, userId }) => {
+    const poll = await Polls.findById(pollId);
+
+    if (!poll) {
+      throw new Error('Poll not found');
+    }
+
+    // Check if the user has already voted on this poll
+    if (poll.users.includes(userId)) {
+      throw new Error('User has already voted on this poll');
+    }
+
+    // If the user hasn't voted, proceed with the vote
+    poll.users.push(userId);
+
+    if (option === 'Yes') {
+      poll.voteYes += 1;
+    } else if (option === 'No') {
+      poll.voteNo += 1;
+    }
+
+    await poll.save();
+
+    return poll;
+  },
+  Poll: {
+    users: async (parent) => User.find({ _id: { $in: parent.users } }),
+  }
 };
 
 module.exports = resolvers;

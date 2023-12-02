@@ -5,6 +5,7 @@ const typeDefs = `
     email: String
     password: String
     thoughts: [Thought]!
+    polls: [Polls!]
   }
 
   type Thought {
@@ -27,12 +28,24 @@ const typeDefs = `
     user: User
   }
 
+  type Poll {
+    id: ID!
+    name: String!
+    thisPoll: String!
+    thatPoll: String!
+    voteYes: Int!
+    voteNo: Int!
+    title: String!
+    users: [User]
+  }
+
   type Query {
     users: [User]
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
     me: User
+    getPolls: [Poll]
   }
 
   type Mutation {
@@ -42,6 +55,8 @@ const typeDefs = `
     addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
+    createPoll(name: String!, thisPoll: String!, thatPoll: String!, title: String!): Poll
+    voteOnPoll(pollId: ID!, option: String!, userId: ID!): Poll
   }
 `;
 
