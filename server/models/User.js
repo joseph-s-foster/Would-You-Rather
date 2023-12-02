@@ -25,6 +25,12 @@ const userSchema = new Schema({
       ref: 'Thought',
     },
   ],
+  polls: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Polls',
+    },
+  ],
 });
 
 userSchema.pre('save', async function (next) {
