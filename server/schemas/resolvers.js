@@ -117,12 +117,12 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-  },
-  createPoll: async (_, { name, thisPoll, thatPoll, title }) => {
-    const poll = new Polls({ name, thisPoll, thatPoll, title });
-    await poll.save();
-    return poll;
-  },
+
+createPoll: async (_, { name, thisPoll, thatPoll, title }) => {
+      const poll = new Polls({ name, thisPoll, thatPoll, title });
+      await poll.save();
+      return poll;
+    },
   voteOnPoll: async (_, { pollId, option, userId }) => {
     const poll = await Polls.findById(pollId);
 
@@ -148,6 +148,7 @@ const resolvers = {
 
     return poll;
   },
+},
   Poll: {
     users: async (parent) => User.find({ _id: { $in: parent.users } }),
   }

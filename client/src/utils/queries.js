@@ -58,3 +58,20 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const GET_POLLS_QUERY = gql`
+  query GetPolls {
+    getPolls {
+      id
+      title
+      thisPoll
+      thatPoll
+      voteYes
+      voteNo
+      users {
+        id
+        username
+      }
+    }
+  }
+`;

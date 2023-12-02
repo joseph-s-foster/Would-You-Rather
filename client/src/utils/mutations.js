@@ -54,3 +54,16 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const VOTE_ON_POLL_MUTATION = gql`
+  mutation VoteOnPoll($pollId: ID!, $option: String!, $userId: ID!) {
+    voteOnPoll(pollId: $pollId, option: $option, userId: $userId) {
+      id
+      title
+      thisPoll
+      thatPoll
+      voteYes
+      voteNo
+    }
+  }
+`;
