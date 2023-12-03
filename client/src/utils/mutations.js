@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
       token
       user {
         _id
@@ -13,8 +13,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addUser($username: String!, $password: String!) {
+    addUser(username: $username, password: $password) {
       token
       user {
         _id
@@ -69,8 +69,18 @@ export const VOTE_ON_POLL_MUTATION = gql`
 `;
 
 export const CREATE_POLL_MUTATION = gql`
-  mutation CreatePoll($name: String!, $thisPoll: String!, $thatPoll: String!, $title: String!) {
-    createPoll(name: $name, thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
+  mutation CreatePoll(
+    $name: String!
+    $thisPoll: String!
+    $thatPoll: String!
+    $title: String!
+  ) {
+    createPoll(
+      name: $name
+      thisPoll: $thisPoll
+      thatPoll: $thatPoll
+      title: $title
+    ) {
       id
       title
       thisPoll
@@ -80,8 +90,20 @@ export const CREATE_POLL_MUTATION = gql`
 `;
 
 export const EDIT_POLL_MUTATION = gql`
-  mutation EditPoll($pollId: ID!, $name: String, $thisPoll: String, $thatPoll: String, $title: String) {
-    editPoll(pollId: $pollId, name: $name, thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
+  mutation EditPoll(
+    $pollId: ID!
+    $name: String
+    $thisPoll: String
+    $thatPoll: String
+    $title: String
+  ) {
+    editPoll(
+      pollId: $pollId
+      name: $name
+      thisPoll: $thisPoll
+      thatPoll: $thatPoll
+      title: $title
+    ) {
       id
       title
       thisPoll
