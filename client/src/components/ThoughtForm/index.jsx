@@ -120,8 +120,8 @@ const ThoughtForm = () => {
       ) : (
         <p>
           {" "}
-          <Link to="/login">Login</Link> or <Link to="/signup">Signup </Link>
-          to create a poll or cast your vote.
+          <Link to="/login">Login / Signup </Link>
+          to create polls or cast your votes.
         </p>
       )}
     </div>

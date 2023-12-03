@@ -1,87 +1,101 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
-
+import { ADD_USER, LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-const Login = (props) => {
-  const [formState, setFormState] = useState({ username: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+const Login = () => {
+  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [login, { error: loginError, data: loginData }] = useMutation(LOGIN_USER);
+  const [signup, { error: signupError, data: signupData }] = useMutation(ADD_USER);
 
-  // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  // submit form
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async (event, mutation) => {
     event.preventDefault();
-    console.log(formState);
     try {
-      const { data } = await login({
+      console.log("Form State:", formState);
+
+      const { data } = await mutation({
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
+      console.log("Mutation Data:", data);
+
+      if (mutation === signup) {
+        Auth.login(data.addUser.token);
+      } else {
+        Auth.login(data.login.token);
+      }
     } catch (e) {
-      console.error(e);
+      console.error("Mutation Error:", e);
     }
 
-    // clear form values
+    // Clear form values
     setFormState({
       username: "",
       password: "",
     });
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
+      <div className="col-12 col-lg-4 col-md-6 col-sm-6">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
+          <h4 className="card-header bg-dark text-light p-2">Login / Signup</h4>
           <div className="card-body">
-            {data ? (
+            {(loginData || signupData) ? (
               <p>
                 Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form>
                 <input
                   className="form-input"
                   placeholder="Username"
                   name="username"
                   type="text"
                   value={formState.username}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                 />
                 <input
                   className="form-input"
-                  placeholder="******"
+                  placeholder="Password"
                   name="password"
                   type="password"
                   value={formState.password}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                 />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: "pointer" }}
-                  type="submit"
-                >
-                  Submit
-                </button>
+                <div className="flex-row justify-space-between">
+                  <button
+                    className="btn btn-primary"
+                    style={{ cursor: "pointer", flex: "1", margin: "4px" }}
+                    onClick={(event) => handleFormSubmit(event, login)}
+                  >
+                    Login
+                  </button>
+                  <button
+                    className="btn btn-primary"
+                    style={{ cursor: "pointer", flex: "1", margin: "4px" }}
+                    onClick={(event) => handleFormSubmit(event, signup)}
+                  >
+                    Signup
+                  </button>
+                </div>
               </form>
             )}
 
-            {error && (
+            {(loginError || signupError) && (
               <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
+                {(loginError && loginError.message) ||
+                  (signupError && signupError.message)}
               </div>
             )}
           </div>
