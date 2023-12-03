@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         path: '/profiles/:username',
         element: <UserPage />
       }, {
-        path: '/me',
+        path: '/create_poll',
         element: <PollPage />
       }
     ]
