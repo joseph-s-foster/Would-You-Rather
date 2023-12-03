@@ -31,7 +31,8 @@ const typeDefs = `
     id: ID!
     thisPoll: String!
     thatPoll: String!
-    voteYes: Int!
+    voteOption1: String!
+    voteOption2: String!
     title: String!
     users: [User]
   }

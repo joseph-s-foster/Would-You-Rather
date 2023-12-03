@@ -11,8 +11,15 @@ const pollSchema = new Schema({
     required: true,
     unique: true,
   },
-  voteYes: {
+  voteOption1: {
     type: Number,
+    required: true,
+    default: 0, // Set a default value
+  },
+  voteOption2: {
+    type: Number,
+    required: true,
+    default: 0, // Set a default value
   },
   title: {
     type: String,

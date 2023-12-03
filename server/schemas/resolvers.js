@@ -118,34 +118,36 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-createPoll: async (_, { thisPoll, thatPoll, title }) => {
+    createPoll: async (_, { thisPoll, thatPoll, title }) => {
       const poll = new Polls({ thisPoll, thatPoll, title });
       await poll.save();
       return poll;
     },
-  voteOnPoll: async (_, { pollId, option, userId }) => {
-    const poll = await Polls.findById(pollId);
+    voteOnPoll: async (_, { pollId, option, userId }) => {
+      const poll = await Polls.findById(pollId);
 
-    if (!poll) {
-      throw new Error('Poll not found');
-    }
+      if (!poll) {
+        throw new Error('Poll not found');
+      }
 
-    // Check if the user has already voted on this poll
-    if (poll.users.includes(userId)) {
-      throw new Error('User has already voted on this poll');
-    }
+      // Check if the user has already voted on this poll
+      if (poll.users.includes(userId)) {
+        throw new Error('User has already voted on this poll');
+      }
 
-    // If the user hasn't voted, proceed with the vote
-    poll.users.push(userId);
+      // If the user hasn't voted, proceed with the vote
+      poll.users.push(userId);
 
-    if (option === 'Yes') {
-      poll.voteYes += 1;
-    }
+      if (option === 'Option1') {
+        poll.voteOption1 += 1;
+      } else if (option === 'Option2') {
+        poll.voteOption2 += 1;
+      }
 
-    await poll.save();
+      await poll.save();
 
-    return poll;
-  },
+      return poll;
+    },
   editPoll: async (_, { pollId, thisPoll, thatPoll, title }) => {
 
     try {
