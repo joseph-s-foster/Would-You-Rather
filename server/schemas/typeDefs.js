@@ -57,10 +57,10 @@ const typeDefs = `
     removeComment(thoughtId: ID!, commentId: ID!): Thought
     createPoll(name: String!, thisPoll: String!, thatPoll: String!, title: String!): Poll
     voteOnPoll(pollId: ID!, option: String!, userId: ID!): Poll
+    editPoll(pollId: ID!, name: String, thisPoll: String, thatPoll: String, title: String): Poll
+    deletePoll(pollId: ID!): Poll
   }
-  createPoll(name: String!, thisPoll: String!, thatPoll: String!, title: String!): Poll
-  editPoll(pollId: ID!, name: String, thisPoll: String, thatPoll: String, title: String): Poll
-  deletePoll(pollId: ID!): Poll
+
 `;
 
 module.exports = typeDefs;
