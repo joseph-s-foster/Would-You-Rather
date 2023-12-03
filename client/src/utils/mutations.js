@@ -67,3 +67,34 @@ export const VOTE_ON_POLL_MUTATION = gql`
     }
   }
 `;
+
+export const CREATE_POLL_MUTATION = gql`
+  mutation CreatePoll($name: String!, $thisPoll: String!, $thatPoll: String!, $title: String!) {
+    createPoll(name: $name, thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
+      id
+      title
+      thisPoll
+      thatPoll
+    }
+  }
+`;
+
+export const EDIT_POLL_MUTATION = gql`
+  mutation EditPoll($pollId: ID!, $name: String, $thisPoll: String, $thatPoll: String, $title: String) {
+    editPoll(pollId: $pollId, name: $name, thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
+      id
+      title
+      thisPoll
+      thatPoll
+    }
+  }
+`;
+
+export const DELETE_POLL_MUTATION = gql`
+  mutation DeletePoll($pollId: ID!) {
+    deletePoll(pollId: $pollId) {
+      id
+      title
+    }
+  }
+`;
