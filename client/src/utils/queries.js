@@ -65,7 +65,6 @@ export const GET_POLLS_QUERY = gql`
       thisPoll
       thatPoll
       voteYes
-      voteNo
       users {
         id
         username

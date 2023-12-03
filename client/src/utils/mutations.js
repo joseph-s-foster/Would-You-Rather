@@ -63,24 +63,13 @@ export const VOTE_ON_POLL_MUTATION = gql`
       thisPoll
       thatPoll
       voteYes
-      voteNo
     }
   }
 `;
 
 export const CREATE_POLL_MUTATION = gql`
-  mutation CreatePoll(
-    $name: String!
-    $thisPoll: String!
-    $thatPoll: String!
-    $title: String!
-  ) {
-    createPoll(
-      name: $name
-      thisPoll: $thisPoll
-      thatPoll: $thatPoll
-      title: $title
-    ) {
+  mutation CreatePoll($thisPoll: String!, $thatPoll: String!, $title: String!) {
+    createPoll(thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
       id
       title
       thisPoll
@@ -90,26 +79,15 @@ export const CREATE_POLL_MUTATION = gql`
 `;
 
 export const EDIT_POLL_MUTATION = gql`
-  mutation EditPoll(
-    $pollId: ID!
-    $name: String
-    $thisPoll: String
-    $thatPoll: String
-    $title: String
-  ) {
-    editPoll(
-      pollId: $pollId
-      name: $name
-      thisPoll: $thisPoll
-      thatPoll: $thatPoll
-      title: $title
-    ) {
-      id
-      title
-      thisPoll
-      thatPoll
-    }
+mutation EditPoll($pollId: ID!, $thisPoll: String, $thatPoll: String, $title: String) {
+  editPoll(pollId: $pollId, thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
+    id
+    title
+    thisPoll
+    thatPoll
   }
+}
+
 `;
 
 export const DELETE_POLL_MUTATION = gql`

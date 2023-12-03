@@ -29,11 +29,9 @@ const typeDefs = `
 
   type Poll {
     id: ID!
-    name: String!
     thisPoll: String!
     thatPoll: String!
     voteYes: Int!
-    voteNo: Int!
     title: String!
     users: [User]
   }
@@ -54,9 +52,9 @@ const typeDefs = `
     addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
-    createPoll(name: String!, thisPoll: String!, thatPoll: String!, title: String!): Poll
+    createPoll(thisPoll: String!, thatPoll: String!, title: String!): Poll
     voteOnPoll(pollId: ID!, option: String!, userId: ID!): Poll
-    editPoll(pollId: ID!, name: String, thisPoll: String, thatPoll: String, title: String): Poll
+    editPoll(pollId: ID!, thisPoll: String, thatPoll: String, title: String): Poll
     deletePoll(pollId: ID!): Poll
   }
 

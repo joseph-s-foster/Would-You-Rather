@@ -1,12 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const pollSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
   thisPoll: {
     type: String,
     required: true,
@@ -19,11 +13,6 @@ const pollSchema = new Schema({
   },
   voteYes: {
     type: Number,
-    required: true,
-  },
-  voteNo: {
-    type: Number,
-    required: true,
   },
   title: {
     type: String,

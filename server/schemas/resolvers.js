@@ -118,8 +118,8 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-createPoll: async (_, { name, thisPoll, thatPoll, title }) => {
-      const poll = new Polls({ name, thisPoll, thatPoll, title });
+createPoll: async (_, { thisPoll, thatPoll, title }) => {
+      const poll = new Polls({ thisPoll, thatPoll, title });
       await poll.save();
       return poll;
     },
@@ -140,29 +140,38 @@ createPoll: async (_, { name, thisPoll, thatPoll, title }) => {
 
     if (option === 'Yes') {
       poll.voteYes += 1;
-    } else if (option === 'No') {
-      poll.voteNo += 1;
     }
 
     await poll.save();
 
     return poll;
   },
-  editPoll: async (_, { pollId, name, thisPoll, thatPoll, title }) => {
-    const poll = await Polls.findById(pollId);
+  editPoll: async (_, { pollId, thisPoll, thatPoll, title }) => {
 
-    if (!poll) {
-      throw new Error('Poll not found');
+    try {
+      const poll = await Polls.findById(pollId);
+  
+      if (!poll) {
+        throw new Error('Poll not found');
+      }
+  
+      // Update fields if provided
+      if (thisPoll) poll.thisPoll = thisPoll;
+      if (thatPoll) poll.thatPoll = thatPoll;
+      if (title) poll.title = title;
+  
+      // Use the markModified() method to mark modified paths before saving
+      poll.markModified('thisPoll');
+      poll.markModified('thatPoll');
+      poll.markModified('title');
+  
+      await poll.save();
+  
+      return poll;
+    } catch (error) {
+      console.error('Error updating poll:', error);
+      throw error;
     }
-
-    // Update fields if provided
-    if (name) poll.name = name;
-    if (thisPoll) poll.thisPoll = thisPoll;
-    if (thatPoll) poll.thatPoll = thatPoll;
-    if (title) poll.title = title;
-
-    await poll.save();
-    return poll;
   },
   deletePoll: async (_, { pollId }) => {
     const poll = await Polls.findByIdAndDelete(pollId);
