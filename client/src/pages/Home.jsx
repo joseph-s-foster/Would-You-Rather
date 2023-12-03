@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 
 import ThoughtList from "../components/ThoughtList";
 import ThoughtForm from "../components/ThoughtForm";
+import PollCard from "../components/PollCard";
 
 import { QUERY_THOUGHTS } from "../utils/queries";
 
@@ -25,10 +26,11 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <ThoughtList
-              thoughts={thoughts}
-              // title="User Polls"
-            />
+            <PollCard />
+            // <ThoughtList
+            //   thoughts={thoughts}
+            //   // title="User Polls"
+            // />
           )}
         </div>
       </div>
