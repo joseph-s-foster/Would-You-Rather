@@ -64,11 +64,8 @@ export const GET_POLLS_QUERY = gql`
       title
       thisPoll
       thatPoll
-      voteYes
-      users {
-        id
-        username
-      }
+      voteOption1
+      voteOption2
     }
   }
 `;

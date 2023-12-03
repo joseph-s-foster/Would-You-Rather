@@ -62,7 +62,8 @@ export const VOTE_ON_POLL_MUTATION = gql`
       title
       thisPoll
       thatPoll
-      voteYes
+      voteOption1
+      voteOption2
     }
   }
 `;
