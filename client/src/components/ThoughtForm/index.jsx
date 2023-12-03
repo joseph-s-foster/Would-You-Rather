@@ -121,7 +121,7 @@ const ThoughtForm = () => {
         <p>
           {" "}
           <Link to="/login">Login / Signup </Link>
-          to create polls or cast your votes.
+          to create polls, view data, or submit votes.
         </p>
       )}
     </div>
