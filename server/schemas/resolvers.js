@@ -1,6 +1,6 @@
 // Reminder we can use "thoughts" for user comments on each poll. If we do return to the activity and 
 // copy the thoughts.js file and put back in the models folder.
-const { User, Thought } = require('../models');
+const { User, Thought, Polls } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -145,6 +145,31 @@ createPoll: async (_, { name, thisPoll, thatPoll, title }) => {
     }
 
     await poll.save();
+
+    return poll;
+  },
+  editPoll: async (_, { pollId, name, thisPoll, thatPoll, title }) => {
+    const poll = await Polls.findById(pollId);
+
+    if (!poll) {
+      throw new Error('Poll not found');
+    }
+
+    // Update fields if provided
+    if (name) poll.name = name;
+    if (thisPoll) poll.thisPoll = thisPoll;
+    if (thatPoll) poll.thatPoll = thatPoll;
+    if (title) poll.title = title;
+
+    await poll.save();
+    return poll;
+  },
+  deletePoll: async (_, { pollId }) => {
+    const poll = await Polls.findByIdAndDelete(pollId);
+
+    if (!poll) {
+      throw new Error('Poll not found');
+    }
 
     return poll;
   },
