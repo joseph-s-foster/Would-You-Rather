@@ -35,7 +35,7 @@ const ThoughtList = ({
                 ) : (
                   <>
                     <span style={{ fontSize: '1rem' }}>
-                      You had this thought on {thought.createdAt}
+                      Your Polls {thought.createdAt}
                     </span>
                   </>
                 )}

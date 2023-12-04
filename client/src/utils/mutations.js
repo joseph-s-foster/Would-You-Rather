@@ -39,20 +39,66 @@ export const ADD_THOUGHT = gql`
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+export const CREATE_POLL = gql`
+mutation CreatePoll($thisPoll: String!, $thatPoll: String!, $title: String!) {
+  createPoll(thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
+    id
+    thisPoll
+    thatPoll
+    voteOption1
+    voteOption2
+    title
+    users {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        createdAt
+      username
+      password
+      polls {
+        id
+        thisPoll
+        thatPoll
+        voteOption1
+        voteOption2
+        title
       }
     }
+    comments {
+      _id
+      commentText
+      username
+      createdAt
+    }
   }
+}`
+export const ADD_COMMENT = gql`
+mutation AddComment($pollId: ID!, $commentText: String!) {
+  addComment(pollId: $pollId, commentText: $commentText) {
+    id
+    thisPoll
+    thatPoll
+    voteOption1
+    voteOption2
+    title
+    users {
+      _id
+      username
+      password
+      polls {
+        id
+        thisPoll
+        thatPoll
+        voteOption1
+        voteOption2
+        title
+      }
+    }
+    comments {
+      _id
+      commentText
+      username
+      createdAt
+    }
+  }
+}
 `;
 
 export const VOTE_ON_POLL_MUTATION = gql`
