@@ -3,22 +3,13 @@ const typeDefs = `
     _id: ID
     username: String
     password: String
-    thoughts: [Thought]!
     polls: [Poll!]
-  }
-
-  type Thought {
-    _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
   }
 
   type Comment {
     _id: ID
     commentText: String
-    commentAuthor: String
+    username: String
     createdAt: String
   }
 
@@ -35,13 +26,12 @@ const typeDefs = `
     voteOption2: String!
     title: String!
     users: [User]
+    comments: [Comment]
   }
 
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
     me: User
     getPolls: [Poll]
   }
@@ -49,10 +39,7 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addComment(pollId: ID!, commentText: String!): Poll
     createPoll(thisPoll: String!, thatPoll: String!, title: String!): Poll
     voteOnPoll(pollId: ID!, option: String!, userId: ID!): Poll
     editPoll(pollId: ID!, thisPoll: String, thatPoll: String, title: String): Poll
