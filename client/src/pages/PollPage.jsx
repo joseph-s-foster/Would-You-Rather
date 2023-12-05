@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 
-import ThoughtList from "../components/ThoughtList";
-import ThoughtForm from "../components/ThoughtForm";
+// import ThoughtList from "../components/ThoughtList";
+// import ThoughtForm from "../components/ThoughtForm";
 import PollCard from "../components/PollCard";
+import PollForm from "../components/NewPollForm";
 
 import { QUERY_THOUGHTS } from "../utils/queries";
 
@@ -17,7 +18,7 @@ const Home = () => {
           className="col-lg-6 col-md-12 mb-4 p-3"
           style={{ border: "1px solid #1a1a1a" }}
         >
-          <ThoughtForm />
+          <PollForm />
         </div>
       </div>
     </main>
