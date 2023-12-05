@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
-
 function PollCard() {
   const cardStyle = {
     display: "flex",
@@ -58,20 +57,21 @@ function PollCard() {
 
   return (
     <div style={cardStyle}>
-      <div style={titleStyle}> Poll Title
+      <div style={titleStyle}>
+        {" "}
+        Pets
         {/* { {title ? title : "Poll Title"}} */}
-        </div>
+      </div>
       <div style={buttonContainerStyle}>
         <div style={buttonStyleBlue}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
             {" "}
-            Poll choice 1
-            {/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
+            Cats{/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
           </button>
         </div>
         <div style={buttonStyleGreen}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
-            Poll choice 2
+            Dogs
           </button>
         </div>
       </div>

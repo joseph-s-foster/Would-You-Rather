@@ -42,11 +42,11 @@ const PollForm = () => {
     const { name, value } = event.target;
 
     // Update state based on input name
-    if (name === "title" && value.length <= 48) {
+    if (name === "title" && value.length <= 24) {
       setTitle(value);
-    } else if (name === "thisPoll" && value.length <= 24) {
+    } else if (name === "thisPoll" && value.length <= 16) {
       setThisPoll(value);
-    } else if (name === "thatPoll" && value.length <= 24) {
+    } else if (name === "thatPoll" && value.length <= 16) {
       setThatPoll(value);
     }
 
@@ -101,7 +101,7 @@ const PollForm = () => {
 
             <div className="col-12">
               <button
-                className="btn btn-primary btn-block py-3"
+                className="btn btn-primary btn-block mt-2 py-3"
                 type="submit"
                 disabled={isSubmitDisabled}
               >
