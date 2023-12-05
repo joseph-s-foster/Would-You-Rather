@@ -3,19 +3,18 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 
 import { CREATE_POLL } from "../../utils/mutations";
-import { QUERY_THOUGHTS, QUERY_ME } from "../../utils/queries";
+
 
 import Auth from "../../utils/auth";
 
-const ThoughtForm = () => {
+const PollForm = () => {
   const [title, setTitle] = useState("");
   const [thisPoll, setThisPoll] = useState("");
   const [thatPoll, setThatPoll] = useState("");
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [createPoll, { error }] = useMutation(CREATE_POLL, {
-  });
+  const [createPoll, { error }] = useMutation(CREATE_POLL)
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -23,10 +22,9 @@ const ThoughtForm = () => {
     try {
       const { data } = await createPoll({
         variables: {
-           title,
-           thisPoll,
-          thatPoll,
-        Auth.getProfile().data.username,
+          title,
+          thisPoll,
+          thatPoll
         },
       });
 
@@ -34,8 +32,9 @@ const ThoughtForm = () => {
       setTitle("");
       setThisPoll("");
       setThatPoll("");
+      console.log(data);
     } catch (err) {
-      console.error(err);
+      console.error(err.message);
     }
   };
 
@@ -43,11 +42,11 @@ const ThoughtForm = () => {
     const { name, value } = event.target;
 
     // Update state based on input name
-    if (name === "thoughtTitle" && value.length <= 48) {
+    if (name === "title" && value.length <= 48) {
       setTitle(value);
-    } else if (name === "thoughtThis" && value.length <= 24) {
+    } else if (name === "thisPoll" && value.length <= 24) {
       setThisPoll(value);
-    } else if (name === "thoughtThat" && value.length <= 24) {
+    } else if (name === "thatPoll" && value.length <= 24) {
       setThatPoll(value);
     }
 
@@ -72,7 +71,7 @@ const ThoughtForm = () => {
             <div className="col-12">
               <input
                 type="text"
-                name="thoughtTitle"
+                name="title"
                 placeholder="Title"
                 value={title}
                 className="form-input w-100"
@@ -82,7 +81,7 @@ const ThoughtForm = () => {
             <div className="col-12">
               <input
                 type="text"
-                name="thoughtThis"
+                name="thisPoll"
                 placeholder="Ex: Apple"
                 value={thisPoll}
                 className="form-input w-100"
@@ -92,7 +91,7 @@ const ThoughtForm = () => {
             <div className="col-12">
               <input
                 type="text"
-                name="thoughtThat"
+                name="thatPoll"
                 placeholder="Ex: Android"
                 value={thatPoll}
                 className="form-input w-100"
@@ -127,4 +126,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default PollForm;
