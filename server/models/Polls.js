@@ -1,37 +1,39 @@
 const { Schema, model } = require('mongoose');
-
+const commentSchema = require('./Comments')
 const pollSchema = new Schema({
-    name: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
+  thisPoll: {
+    type: String,
+    required: true,
+   
+  },
+  thatPoll: {
+    type: String,
+    required: true,
+  },
+  voteOption1: {
+    type: Number,
+    required: true,
+    default: 0, // Set a default value
+  },
+  voteOption2: {
+    type: Number,
+    required: true,
+    default: 0, // Set a default value
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
     },
-    thisPoll: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    thatPoll: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    voteYes: {
-        type: Number,
-        required: true,
-      },
-    voteNo: {
-        type: Number,
-        required: true,
-      },
-    users: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'User',
-        },
-      ],
-  });
+  ],
+  comments: [
+    commentSchema
+  ]
+});
 
 const Polls = model('Polls', pollSchema);
 

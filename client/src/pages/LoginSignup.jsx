@@ -1,87 +1,101 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_USER, LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
-import Auth from '../utils/auth';
+const Login = () => {
+  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [login, { error: loginError, data: loginData }] = useMutation(LOGIN_USER);
+  const [signup, { error: signupError, data: signupData }] = useMutation(ADD_USER);
 
-const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const handleFormSubmit = async (event, mutation) => {
+    event.preventDefault();
+    try {
+      console.log("Form State:", formState);
 
-  // update state based on form input changes
-  const handleChange = (event) => {
+      const { data } = await mutation({
+        variables: { ...formState },
+      });
+
+      console.log("Mutation Data:", data);
+
+      if (mutation === signup) {
+        Auth.login(data.addUser.token);
+      } else {
+        Auth.login(data.login.token);
+      }
+    } catch (e) {
+      console.error("Mutation Error:", e);
+    }
+
+    // Clear form values
+    setFormState({
+      username: "",
+      password: "",
+    });
+  };
+
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-
     setFormState({
       ...formState,
       [name]: value,
     });
   };
 
-  // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-    try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-    }
-
-    // clear form values
-    setFormState({
-      email: '',
-      password: '',
-    });
-  };
-
   return (
     <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
+      <div className="col-12 col-lg-4 col-md-6 col-sm-6">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
+          <h4 className="card-header bg-dark text-light p-2">Login / Signup</h4>
           <div className="card-body">
-            {data ? (
+            {(loginData || signupData) ? (
               <p>
-                Success! You may now head{' '}
+                Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form>
                 <input
                   className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
+                  placeholder="Username"
+                  name="username"
+                  type="text"
+                  value={formState.username}
+                  onChange={handleInputChange}
                 />
                 <input
                   className="form-input"
-                  placeholder="******"
+                  placeholder="Password"
                   name="password"
                   type="password"
                   value={formState.password}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                 />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
+                <div className="flex-row justify-space-between">
+                  <button
+                    className="btn btn-primary"
+                    style={{ cursor: "pointer", flex: "1", margin: "4px" }}
+                    onClick={(event) => handleFormSubmit(event, login)}
+                  >
+                    Login
+                  </button>
+                  <button
+                    className="btn btn-primary"
+                    style={{ cursor: "pointer", flex: "1", margin: "4px" }}
+                    onClick={(event) => handleFormSubmit(event, signup)}
+                  >
+                    Signup
+                  </button>
+                </div>
               </form>
             )}
 
-            {error && (
+            {(loginError || signupError) && (
               <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
+                {(loginError && loginError.message) ||
+                  (signupError && signupError.message)}
               </div>
             )}
           </div>

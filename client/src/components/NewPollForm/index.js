@@ -2,41 +2,39 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 
-import { ADD_THOUGHT } from "../../utils/mutations";
-import { QUERY_THOUGHTS, QUERY_ME } from "../../utils/queries";
+import { CREATE_POLL } from "../../utils/mutations";
+
 
 import Auth from "../../utils/auth";
 
-const ThoughtForm = () => {
-  const [thoughtTitle, setThoughtTitle] = useState("");
-  const [thoughtThis, setThoughtThis] = useState("");
-  const [thoughtThat, setThoughtThat] = useState("");
+const PollForm = () => {
+  const [title, setTitle] = useState("");
+  const [thisPoll, setThisPoll] = useState("");
+  const [thatPoll, setThatPoll] = useState("");
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation(ADD_THOUGHT, {
-    refetchQueries: [QUERY_THOUGHTS, "getThoughts", QUERY_ME, "me"],
-  });
+  const [createPoll, { error }] = useMutation(CREATE_POLL)
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addThought({
+      const { data } = await createPoll({
         variables: {
-          thoughtTitle,
-          thoughtThis,
-          thoughtThat,
-          thoughtAuthor: Auth.getProfile().data.username,
+          title,
+          thisPoll,
+          thatPoll
         },
       });
 
       // Reset form fields
-      setThoughtTitle("");
-      setThoughtThis("");
-      setThoughtThat("");
+      setTitle("");
+      setThisPoll("");
+      setThatPoll("");
+      console.log(data);
     } catch (err) {
-      console.error(err);
+      console.error(err.message);
     }
   };
 
@@ -44,21 +42,21 @@ const ThoughtForm = () => {
     const { name, value } = event.target;
 
     // Update state based on input name
-    if (name === "thoughtTitle" && value.length <= 48) {
-      setThoughtTitle(value);
-    } else if (name === "thoughtThis" && value.length <= 24) {
-      setThoughtThis(value);
-    } else if (name === "thoughtThat" && value.length <= 24) {
-      setThoughtThat(value);
+    if (name === "title" && value.length <= 48) {
+      setTitle(value);
+    } else if (name === "thisPoll" && value.length <= 24) {
+      setThisPoll(value);
+    } else if (name === "thatPoll" && value.length <= 24) {
+      setThatPoll(value);
     }
 
     // Calculate total character count
     setCharacterCount(
-      thoughtTitle.length + thoughtThis.length + thoughtThat.length
+      title.length + thisPoll.length + thatPoll.length
     );
   };
 
-  const isSubmitDisabled = !thoughtTitle || !thoughtThis || !thoughtThat;
+  const isSubmitDisabled = !title || !thisPoll || !thatPoll;
 
   return (
     <div>
@@ -73,9 +71,9 @@ const ThoughtForm = () => {
             <div className="col-12">
               <input
                 type="text"
-                name="thoughtTitle"
+                name="title"
                 placeholder="Title"
-                value={thoughtTitle}
+                value={title}
                 className="form-input w-100"
                 onChange={handleChange}
               />
@@ -83,9 +81,9 @@ const ThoughtForm = () => {
             <div className="col-12">
               <input
                 type="text"
-                name="thoughtThis"
+                name="thisPoll"
                 placeholder="Ex: Apple"
-                value={thoughtThis}
+                value={thisPoll}
                 className="form-input w-100"
                 onChange={handleChange}
               ></input>
@@ -93,9 +91,9 @@ const ThoughtForm = () => {
             <div className="col-12">
               <input
                 type="text"
-                name="thoughtThat"
+                name="thatPoll"
                 placeholder="Ex: Android"
-                value={thoughtThat}
+                value={thatPoll}
                 className="form-input w-100"
                 onChange={handleChange}
               ></input>
@@ -128,4 +126,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default PollForm;

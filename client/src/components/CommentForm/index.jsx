@@ -6,7 +6,7 @@ import { ADD_COMMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const CommentForm = ({ thoughtId }) => {
+const CommentForm = ({ pollId }) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -18,9 +18,8 @@ const CommentForm = ({ thoughtId }) => {
     try {
       const { data } = await addComment({
         variables: {
-          thoughtId,
+          pollId,
           commentText,
-          commentAuthor: Auth.getProfile().data.username,
         },
       });
 
@@ -41,7 +40,7 @@ const CommentForm = ({ thoughtId }) => {
 
   return (
     <div>
-      <h4>What are your thoughts on this thought?</h4>
+      <h4>Join the converstation.</h4>
 
       {Auth.loggedIn() ? (
         <>
@@ -60,7 +59,7 @@ const CommentForm = ({ thoughtId }) => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="commentText"
-                placeholder="Add your comment..."
+                placeholder="Add comment..."
                 value={commentText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
@@ -70,15 +69,15 @@ const CommentForm = ({ thoughtId }) => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Comment
+                Submit
               </button>
             </div>
           </form>
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+         {' '}
+          <Link to="/login">Login</Link> or <Link to="/signup">signup to join the converstation.</Link>
         </p>
       )}
     </div>
