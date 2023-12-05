@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 function PollCard() {
+  const [thisPoll, setThisPoll] = useState({});
   const cardStyle = {
     display: "flex",
     flexDirection: "column",
@@ -59,14 +60,13 @@ function PollCard() {
     <div style={cardStyle}>
       <div style={titleStyle}>
         {" "}
-        Pets
-        {/* { {title ? title : "Poll Title"}} */}
+        {thisPoll.title || "Poll Title"}
       </div>
       <div style={buttonContainerStyle}>
         <div style={buttonStyleBlue}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
             {" "}
-            Cats{/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
+            Poll choice 1{/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
           </button>
         </div>
         <div style={buttonStyleGreen}>
