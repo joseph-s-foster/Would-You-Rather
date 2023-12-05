@@ -7,7 +7,7 @@ import { GET_POLLS_QUERY } from "../utils/queries";
 
 const Home = () => {
   const { loading, data } = useQuery(GET_POLLS_QUERY);
-  const thoughts = data?.thoughts || [];
+  const polls = data?.polls || [];
 
   return (
     <main>
@@ -20,8 +20,6 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <PollCard />
-            // <ThoughtList
-            //   thoughts={thoughts}
             //   // title="User Polls"
             // />
           )}
