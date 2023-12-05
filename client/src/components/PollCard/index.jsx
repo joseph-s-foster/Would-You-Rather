@@ -58,12 +58,15 @@ function PollCard() {
 
   return (
     <div style={cardStyle}>
-      <div style={titleStyle}>{ {title ? title : "Poll Title"}}</div>z
+      <div style={titleStyle}> Poll Title
+        {/* { {title ? title : "Poll Title"}} */}
+        </div>
       <div style={buttonContainerStyle}>
         <div style={buttonStyleBlue}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
             {" "}
-            {thisPoll ? thisPoll : "Poll Choice 1"}
+            Poll choice 1
+            {/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
           </button>
         </div>
         <div style={buttonStyleGreen}>
