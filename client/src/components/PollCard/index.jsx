@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
-// use query hook to get info 
-
 function PollCard() {
   const [thisPoll, setThisPoll] = useState({});
   const cardStyle = {
@@ -73,7 +71,7 @@ function PollCard() {
         </div>
         <div style={buttonStyleGreen}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
-            Poll choice 2
+            Dogs
           </button>
         </div>
       </div>
