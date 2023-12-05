@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 
-// import ThoughtList from "../components/ThoughtList";
-// import ThoughtForm from "../components/ThoughtForm";
+
 import PollCard from "../components/PollCard";
 import PollForm from "../components/NewPollForm";
 
