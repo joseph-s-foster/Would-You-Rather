@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
+// use query hook to get info 
 
 function PollCard() {
+  const [thisPoll, setThisPoll] = useState({});
   const cardStyle = {
     display: "flex",
     flexDirection: "column",
@@ -58,15 +60,15 @@ function PollCard() {
 
   return (
     <div style={cardStyle}>
-      <div style={titleStyle}> Poll Title
-        {/* { {title ? title : "Poll Title"}} */}
-        </div>
+      <div style={titleStyle}>
+        {" "}
+        {thisPoll.title || "Poll Title"}
+      </div>
       <div style={buttonContainerStyle}>
         <div style={buttonStyleBlue}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
             {" "}
-            Poll choice 1
-            {/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
+            Poll choice 1{/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
           </button>
         </div>
         <div style={buttonStyleGreen}>

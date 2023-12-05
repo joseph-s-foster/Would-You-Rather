@@ -4,11 +4,11 @@ import { useQuery } from "@apollo/client";
 import PollCard from "../components/PollCard";
 import PollForm from "../components/NewPollForm";
 
-import { QUERY_THOUGHTS } from "../utils/queries";
+// import { QUERY_THOUGHTS } from "../utils/queries";
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
-  const thoughts = data?.thoughts || [];
+  // const { loading, data } = useQuery(QUERY_THOUGHTS);
+  // const thoughts = data?.thoughts || [];
 
   return (
     <main>
