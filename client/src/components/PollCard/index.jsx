@@ -1,8 +1,29 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import React from "react";
-
 
 function PollCard() {
+  // State variables to track voting status and counts
+  const [userVoted, setUserVoted] = useState(false);
+  const [voteCountOption1, setVoteCountOption1] = useState(0);
+  const [voteCountOption2, setVoteCountOption2] = useState(0);
+
+  // Function to handle user votes
+  const handleVote = (option) => {
+    // Check if the user hasn't voted yet
+    if (!userVoted) {
+      // Mark the user as voted
+      setUserVoted(true);
+
+      // Increment the vote count for the selected option
+      if (option === "option1") {
+        setVoteCountOption1(voteCountOption1 + 1);
+      } else if (option === "option2") {
+        setVoteCountOption2(voteCountOption2 + 1);
+      }
+    }
+  };
+
+  // Styles for the poll card
   const cardStyle = {
     display: "flex",
     flexDirection: "column",
@@ -22,9 +43,9 @@ function PollCard() {
   };
 
   const buttonContainerStyle = {
-    display: "flex", // Updated to use flexbox
-    flexDirection: "row", // Align children in a row
-    flexGrow: 1, // Allow buttons to grow and fill available space
+    display: "flex",
+    flexDirection: "row",
+    flexGrow: 1,
   };
 
   const buttonStyle = {
@@ -35,47 +56,38 @@ function PollCard() {
     borderRadius: "8px",
     width: "100%",
   };
-  // Button color style options below
+
+  // Button color style options
   const buttonStyleBlue = {
     ...buttonStyle,
-    backgroundColor: "rgba(173, 216, 230, 0.1)", // Slightly blue background
-  };
-
-  const buttonStyleRed = {
-    ...buttonStyle,
-    backgroundColor: "rgba(255, 0, 0, 0.1)", // Slightly red background
-  };
-
-  const buttonStylePurple = {
-    ...buttonStyle,
-    backgroundColor: "rgba(128, 0, 128, 0.1)", // Slightly purple background
+    backgroundColor: "rgba(173, 216, 230, 0.1)",
   };
 
   const buttonStyleGreen = {
     ...buttonStyle,
-    backgroundColor: "rgba(34, 200, 34, 0.1)", // Slightly green background
+    backgroundColor: "rgba(34, 200, 34, 0.1)",
   };
 
+  // Render the poll card component
   return (
     <div style={cardStyle}>
-      <div style={titleStyle}> Poll Title
-        {/* { {title ? title : "Poll Title"}} */}
-        </div>
+      <div style={titleStyle}>Pets</div>
       <div style={buttonContainerStyle}>
-        <div style={buttonStyleBlue}>
+        {/* Option 1 button */}
+        <div style={buttonStyleBlue} onClick={() => handleVote("option1")}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
-            {" "}
-            Poll choice 1
-            {/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
+            Cats<br />Votes: {voteCountOption1}
           </button>
         </div>
-        <div style={buttonStyleGreen}>
+        {/* Option 2 button */}
+        <div style={buttonStyleGreen} onClick={() => handleVote("option2")}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
-            Poll choice 2
+            Dogs<br />Votes: {voteCountOption2}
           </button>
         </div>
       </div>
     </div>
   );
 }
+
 export default PollCard;
