@@ -42,7 +42,7 @@ const typeDefs = `
     addComment(pollId: ID!, commentText: String!): Poll
     createPoll(thisPoll: String!, thatPoll: String!, title: String!): Poll
     voteOnPoll(pollId: ID!, option: String!, userId: ID!): Poll
-    editPoll(pollId: ID!, thisPoll: String, thatPoll: String, title: String): Poll
+    editPoll(pollId: ID!, title: String): Poll
     deletePoll(pollId: ID!): Poll
   }
 
