@@ -21,7 +21,7 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-             <Link className="btn btn-lg btn-danger m-2" to="/user_polls">
+             <Link className="btn btn-lg btn-danger m-2" to="/user-polls">
                 Manage Polls
               </Link>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>

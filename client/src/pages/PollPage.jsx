@@ -14,7 +14,7 @@ const Home = () => {
     <main>
       <div className="flex-row justify-center">
         <div
-          className="col-12 col-md-12 mb-4 p-3"
+          className="col-lg-6 col-md-12 mb-4 p-3"
           style={{ border: "1px solid #1a1a1a" }}
         >
           <ThoughtForm />
