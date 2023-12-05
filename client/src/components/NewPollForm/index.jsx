@@ -4,7 +4,6 @@ import { useMutation } from "@apollo/client";
 
 import { CREATE_POLL } from "../../utils/mutations";
 
-
 import Auth from "../../utils/auth";
 
 const PollForm = () => {

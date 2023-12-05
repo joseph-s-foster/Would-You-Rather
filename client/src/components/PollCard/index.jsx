@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
-function PollCard() {
-  const [thisPoll, setThisPoll] = useState({});
+function PollCard({poll}) {
+  // const [thisPoll, setThisPoll] = useState({});
   const cardStyle = {
     display: "flex",
     flexDirection: "column",
@@ -60,18 +60,18 @@ function PollCard() {
     <div style={cardStyle}>
       <div style={titleStyle}>
         {" "}
-        {thisPoll.title || "Poll Title"}
+        {poll.title || "Poll Title"}
       </div>
       <div style={buttonContainerStyle}>
         <div style={buttonStyleBlue}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
             {" "}
-            Poll choice 1{/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
+            Poll choice 1{poll.thisPoll}
           </button>
         </div>
         <div style={buttonStyleGreen}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
-            Dogs
+            {poll.thatPoll}
           </button>
         </div>
       </div>

@@ -1,13 +1,19 @@
 
 // once able to get polls to render, will need to add a link to the Home page 
-import { Link } from 'react-router-dom';
 import PollCard from '../PollCard';
+import { useQuery } from '@apollo/client';
+import { QUERYME } from '../../utils/queries';
 
-function PollList({ polls }) {
+function PollList() {
+  const {data, loading, error} = useQuery(QUERYME);
+  const polls = data?.me.polls || [];
     if (!polls.length) {
         return <h3>No Polls Yet</h3>;
     }
-    
+
+    if (loading) return <h2>Loading...</h2>
+    if (error) return <div>{error.message}</div> // DEV ONLY
+
     return (
       <div>
         <h3>User polls</h3>
