@@ -29,8 +29,8 @@ function PollCard({ poll }) {
   const cardStyle = {
     display: "flex",
     flexDirection: "column",
-    width: "400px",
-    height: "300px",
+    width: "350px",
+    height: "200px",
     border: "2px solid #ccc",
     borderRadius: "8px",
     margin: "16px",
