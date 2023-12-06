@@ -66,7 +66,7 @@ function PollCard({poll}) {
         <div style={buttonStyleBlue}>
           <button style={{ width: "100%", height: "100%", background: "none" }}>
             {" "}
-            Poll choice 1{poll.thisPoll}
+            {poll.thisPoll}
           </button>
         </div>
         <div style={buttonStyleGreen}>

@@ -130,3 +130,34 @@ export const DELETE_POLL_MUTATION = gql`
     }
   }
 `;
+
+export const GET_POLLS_QUERY = gql`
+query Query {
+  getPolls {
+    id
+    thisPoll
+    thatPoll
+    voteOption1
+    voteOption2
+    title
+    users {
+      _id
+      username
+      password
+      polls {
+        id
+        thisPoll
+        thatPoll
+        voteOption1
+        voteOption2
+        title
+      }
+    }
+    comments {
+      _id
+      commentText
+      username
+      createdAt
+    }
+  }
+}`

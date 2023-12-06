@@ -7,7 +7,9 @@ import { GET_POLLS_QUERY } from "../utils/queries";
 
 const Home = () => {
   const { loading, data } = useQuery(GET_POLLS_QUERY);
-  const polls = data?.polls || [];
+  const polls = data?.getPolls || [];
+  if (loading)
+  return (<h2>Loading...</h2>);
 
   return (
     <main>
@@ -16,13 +18,9 @@ const Home = () => {
           className="col-12 col-md-12 mb-4 p-3"
           style={{ border: "1px solid #1a1a1a" }}
         >
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <PollCard />
-            //   // title="User Polls"
-            // />
-          )}
+          {polls && (
+            polls.map(poll => (<PollCard poll={poll}/>)))
+          }
         </div>
       </div>
     </main>

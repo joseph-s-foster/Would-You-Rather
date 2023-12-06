@@ -4,7 +4,7 @@ import PollCard from '../PollCard';
 import { useQuery } from '@apollo/client';
 import { QUERYME } from '../../utils/queries';
 
-function PollList() {
+export default function PollList() {
   const {data, loading, error} = useQuery(QUERYME);
   const polls = data?.me.polls || [];
     if (!polls.length) {
@@ -34,6 +34,4 @@ function PollList() {
         </div>
       </div>
     );
-    }
-
-export default PollList;
+    };
