@@ -31,7 +31,7 @@ const PollForm = () => {
       setTitle("");
       setThisPoll("");
       setThatPoll("");
-      console.log(data);
+      document.location.reload();
     } catch (err) {
       console.error(err.message);
     }
