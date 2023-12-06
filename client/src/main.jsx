@@ -5,7 +5,8 @@ import App from './App.jsx';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/LoginSignup';
-import PollPage from './pages/PollPage';
+// import PollPage from './pages/PollPage';
+import NewPollForm from './components/NewPollForm';
 import UserPage from './pages/UserPage';
 import ErrorPage from './pages/ErrorPage';
 
@@ -24,13 +25,15 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
-      }, {
-        path: '/profiles/:username',
-        element: <UserPage />
-      }, {
-        path: '/user-polls',
-        element: <PollPage />
-      }
+      }, 
+      // {
+      //   path: '/profiles/:username',
+      //   element: <UserPage />
+      // }, 
+      // {
+      //   path: '/user-polls',
+      //   element: <NewPollForm />
+      // }
     ]
   },
 ]);
