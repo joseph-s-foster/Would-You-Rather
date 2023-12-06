@@ -235,4 +235,62 @@ body{
   .poll-card-button-green {
     background-color: rgba(34, 200, 34, 0.1);
   }
+
+
+  /* App.css */
+
+/* Styles for the card container */
+.pollCard {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 300px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the title */
+.title {
+  padding: 16px;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Styles for the button container */
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+/* Base style for buttons */
+.button {
+  flex: 1;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+}
+
+/* Different button colors */
+.blueButton {
+  background-color: rgba(173, 216, 230, 0.1);
+}
+
+.redButton {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.purpleButton {
+  background-color: rgba(128, 0, 128, 0.1);
+}
+
+.greenButton {
+  background-color: rgba(34, 200, 34, 0.1);
+}
+
   
