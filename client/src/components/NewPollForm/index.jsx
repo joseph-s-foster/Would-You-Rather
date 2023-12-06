@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-
+import Polls from "../Polls.jsx"
 import { CREATE_POLL } from "../../utils/mutations";
-
 
 import Auth from "../../utils/auth";
 
@@ -14,7 +13,7 @@ const PollForm = () => {
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [createPoll, { error }] = useMutation(CREATE_POLL)
+  const [createPoll, { error }] = useMutation(CREATE_POLL);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -24,7 +23,7 @@ const PollForm = () => {
         variables: {
           title,
           thisPoll,
-          thatPoll
+          thatPoll,
         },
       });
 
@@ -32,7 +31,7 @@ const PollForm = () => {
       setTitle("");
       setThisPoll("");
       setThatPoll("");
-      console.log(data);
+      document.location.reload();
     } catch (err) {
       console.error(err.message);
     }
@@ -42,18 +41,16 @@ const PollForm = () => {
     const { name, value } = event.target;
 
     // Update state based on input name
-    if (name === "title" && value.length <= 48) {
+    if (name === "title" && value.length <= 24) {
       setTitle(value);
-    } else if (name === "thisPoll" && value.length <= 24) {
+    } else if (name === "thisPoll" && value.length <= 16) {
       setThisPoll(value);
-    } else if (name === "thatPoll" && value.length <= 24) {
+    } else if (name === "thatPoll" && value.length <= 16) {
       setThatPoll(value);
     }
 
     // Calculate total character count
-    setCharacterCount(
-      title.length + thisPoll.length + thatPoll.length
-    );
+    setCharacterCount(title.length + thisPoll.length + thatPoll.length);
   };
 
   const isSubmitDisabled = !title || !thisPoll || !thatPoll;
@@ -61,7 +58,6 @@ const PollForm = () => {
   return (
     <div>
       <h3>Create poll</h3>
-
       {Auth.loggedIn() ? (
         <>
           <form
@@ -101,7 +97,7 @@ const PollForm = () => {
 
             <div className="col-12">
               <button
-                className="btn btn-primary btn-block py-3"
+                className="btn btn-primary btn-block mt-2 py-3"
                 type="submit"
                 disabled={isSubmitDisabled}
               >
@@ -114,6 +110,7 @@ const PollForm = () => {
               </div>
             )}
           </form>
+          <Polls/>
         </>
       ) : (
         <p>

@@ -14,49 +14,6 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-    }
-  }
-`;
-
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
-    }
-  }
-`;
-
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      username
-      thoughts {
-        _id
-        thoughtText
-        thoughtAuthor
-        createdAt
-      }
-    }
-  }
-`;
-
 export const GET_POLLS_QUERY = gql`
   query GetPolls {
     getPolls {
@@ -68,4 +25,31 @@ export const GET_POLLS_QUERY = gql`
       voteOption2
     }
   }
+`;
+
+export const QUERYME = gql`
+query Me {
+  me {
+    _id
+    username
+    password
+    polls {
+      id
+      thisPoll
+      thatPoll
+      voteOption1
+      voteOption2
+      title
+      users {
+        _id
+      }
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+      }
+    }
+  }
+}
 `;

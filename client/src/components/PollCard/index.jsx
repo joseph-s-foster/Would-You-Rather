@@ -1,13 +1,36 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Auth from "../../utils/auth.js";
+import { useMutation } from "@apollo/client";
+import { VOTE_ON_POLL_MUTATION } from "../../utils/mutations.js";
 
+function PollCard({ poll }) {
+  const [userId, setUserId] = useState(null);
+  const loggedIn = Auth.loggedIn();
+  const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION);
 
-function PollCard() {
+  useEffect(() => {
+    if (loggedIn) {
+      setUserId(Auth.getProfile().data._id);
+    }
+  }, [loggedIn]);
+
+  const handleVote = async (e) => {
+    const option = e.target.value;
+    const { data } = await vote({
+      variables: {
+        pollId: poll.id,
+        option: option,
+        userId: userId,
+      },
+    });
+    console.log(data);
+  };
   const cardStyle = {
     display: "flex",
     flexDirection: "column",
-    width: "400px",
-    height: "300px",
+    width: "350px",
+    height: "200px",
     border: "2px solid #ccc",
     borderRadius: "8px",
     margin: "16px",
@@ -58,20 +81,29 @@ function PollCard() {
 
   return (
     <div style={cardStyle}>
-      <div style={titleStyle}> Poll Title
-        {/* { {title ? title : "Poll Title"}} */}
-        </div>
+      <div style={titleStyle}> {poll.title || "Poll Title"}</div>
       <div style={buttonContainerStyle}>
         <div style={buttonStyleBlue}>
-          <button style={{ width: "100%", height: "100%", background: "none" }}>
+          <button
+            disabled={!loggedIn}
+            onClick={handleVote}
+            value="Option1"
+            style={{ width: "100%", height: "100%", background: "none" }}
+          >
             {" "}
-            Poll choice 1
-            {/* {thisPoll ? thisPoll : "Poll Choice 1"} */}
+            {poll.thisPoll}
+            <p>{poll.voteOption1}</p>
           </button>
         </div>
         <div style={buttonStyleGreen}>
-          <button style={{ width: "100%", height: "100%", background: "none" }}>
-            Poll choice 2
+          <button
+            disabled={!loggedIn}
+            onClick={handleVote}
+            value="Option2"
+            style={{ width: "100%", height: "100%", background: "none" }}
+          >
+            {poll.thatPoll}
+            <p>{poll.voteOption2}</p>
           </button>
         </div>
       </div>
