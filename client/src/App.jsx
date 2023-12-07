@@ -1,4 +1,6 @@
+import React from 'react';
 import './App.css';
+import './Reset.css';
 import {
   ApolloClient,
   InMemoryCache,
@@ -38,13 +40,28 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        <Header />
-        <div className="container">
-          <Outlet />
-        </div>
-        <Footer />
-      </div>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Would You Rather</title>
+        </head>
+        <body>
+          <div id="root"></div>
+
+          
+
+          <div className="flex-column justify-flex-start min-100-vh">
+            <Header />
+            <div className="container">
+            
+              <Outlet />
+            </div>
+            <Footer />
+          </div>
+        </body>
+      </html>
     </ApolloProvider>
   );
 }
