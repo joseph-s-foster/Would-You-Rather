@@ -46,6 +46,8 @@ const typeDefs = `
     deletePoll(pollId: ID!): Poll
   }
 
+
 `;
+// if want to edit choices in poll, need to add thisPoll and thatPoll to editPoll mutation
 
 module.exports = typeDefs;
