@@ -13,7 +13,7 @@ export default function Polls() {
   if (error) return <div>{error.message}</div>; // DEV ONLY
 
   return (
-    <div>
+    <div className="mt-4">
       <h3>User polls</h3>
       <div
         style={{

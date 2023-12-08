@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import Polls from "../Polls.jsx"
+import Polls from "../Polls.jsx";
 import { CREATE_POLL } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
@@ -57,13 +57,13 @@ const PollForm = () => {
 
   return (
     <div>
-      <h3>Create poll</h3>
       {Auth.loggedIn() ? (
         <>
           <form
-            className="flex-row justify-center justify-space-between-md align-center"
+             className="d-flex flex-column align-items-center justify-content-center col-lg-6 mx-auto"
             onSubmit={handleFormSubmit}
           >
+            <h3>Create poll</h3>
             <div className="col-12">
               <input
                 type="text"
@@ -110,7 +110,9 @@ const PollForm = () => {
               </div>
             )}
           </form>
-          <Polls/>
+          <div className="d-flex flex-column align-items-center justify-content-center col-lg-6 mx-auto">
+          <Polls />
+          </div>
         </>
       ) : (
         <p>

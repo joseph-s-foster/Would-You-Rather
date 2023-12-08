@@ -14,8 +14,8 @@ const Home = () => {
           className="col-12 col-md-12 mb-4 p-3"
           style={{
             display: "flex",
-            flexDirection: "row", // Display in rows
-            flexWrap: "wrap", // Allow items to wrap to the next row
+            flexDirection: "row",
+            flexWrap: "wrap",
           }}
         >
           {polls &&
