@@ -60,7 +60,7 @@ const PollForm = () => {
       {Auth.loggedIn() ? (
         <>
           <form
-             className="col-lg-4"
+             className="col-lg-6"
             onSubmit={handleFormSubmit}
           >
             <h3>Create poll</h3>
