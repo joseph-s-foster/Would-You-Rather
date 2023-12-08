@@ -15,8 +15,8 @@ const Home = () => {
       <div className="row justify-content-center">
         {polls &&
           polls.map((poll) => (
-            <div className="col-lg-4 mb-3">
-              <PollCard poll={poll} key={poll.id} />
+            <div className="col-lg-4 mb-3" key={poll.id}>
+              {poll.id && <PollCard poll={poll} />}
             </div>
           ))}
       </div>
