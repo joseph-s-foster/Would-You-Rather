@@ -3,11 +3,17 @@ import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth.js";
 import { useMutation } from "@apollo/client";
 import { VOTE_ON_POLL_MUTATION } from "../../utils/mutations.js";
+import { QUERYME } from "../../utils/queries.js"
 
 function PollCard({ poll }) {
   const [userId, setUserId] = useState(null);
   const loggedIn = Auth.loggedIn();
-  const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION);
+  const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION, {
+    refetchQueries: [
+      QUERYME,
+      'queryMe'
+    ]
+  });
 
   useEffect(() => {
     if (loggedIn) {
@@ -15,16 +21,19 @@ function PollCard({ poll }) {
     }
   }, [loggedIn]);
 
-  const handleVote = async (e) => {
-    const option = e.target.value;
-    const { data } = await vote({
-      variables: {
-        pollId: poll.id,
-        option: option,
-        userId: userId,
-      },
-    });
-    console.log(data);
+  const handleVote = async (option) => {
+    try {
+      const { data } = await vote({
+        variables: {
+          pollId: poll.id,
+          option: option,
+          userId: userId,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
   const cardStyle = {
     display: "flex",
@@ -86,7 +95,7 @@ function PollCard({ poll }) {
         <div style={buttonStyleBlue}>
           <button
             disabled={!loggedIn}
-            onClick={handleVote}
+            onClick={() => handleVote('Option1')}
             value="Option1"
             style={{ width: "100%", height: "100%", background: "none" }}
           >
@@ -98,7 +107,7 @@ function PollCard({ poll }) {
         <div style={buttonStyleGreen}>
           <button
             disabled={!loggedIn}
-            onClick={handleVote}
+            onClick={() => handleVote('Option2')}
             value="Option2"
             style={{ width: "100%", height: "100%", background: "none" }}
           >
