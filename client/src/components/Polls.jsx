@@ -6,29 +6,30 @@ export default function Polls() {
   const { data, loading, error } = useQuery(QUERYME);
   const polls = data?.me.polls || [];
   if (!polls.length) {
-    return <h3>No Polls Yet</h3>;
+    return (
+      <h3 className="d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto">
+        No Polls Yet
+      </h3>
+    );
   }
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <div>{error.message}</div>; // DEV ONLY
 
   return (
-    <div className="mt-4">
-      <h3>User polls</h3>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          margin: "20px",
-        }}
-      >
-        {polls &&
-          polls.map((poll) => (
-            <div key={poll._id || poll.thisPoll + poll.thatPoll} className="col-lg-4 col-md-6 col-sm-12 mb-3">
-              <PollCard poll={poll} />
-            </div>
-          ))}
+    <div>
+      <h3 className="d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto">
+        User polls
+      </h3>
+      <div className="row justify-content-center">
+        {polls.map((poll, index) => (
+          <div
+            key={poll._id || poll.thisPoll + poll.thatPoll}
+            className="col-lg-4 mb-3"
+          >
+            <PollCard poll={poll} />
+          </div>
+        ))}
       </div>
     </div>
   );

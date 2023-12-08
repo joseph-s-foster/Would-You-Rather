@@ -24,13 +24,13 @@ const Header = () => {
              <Link className="btn btn-lg btn-danger m-1" to="/user-polls">
                 Manage Polls
               </Link>
-              <button className="btn btn-lg btn-light m-1" onClick={logout}>
+              <button className="btn btn-lg btn-light ml-1" onClick={logout}>
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info m-1" to="/login">
+              <Link className="btn btn-lg btn-info ml-1" to="/login">
                 Login
               </Link>
             </>

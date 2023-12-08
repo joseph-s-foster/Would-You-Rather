@@ -26,19 +26,26 @@ function PollCard({ poll }) {
     });
     console.log(data);
   };
+
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
   const cardStyle = {
     display: "flex",
     flexDirection: "column",
-    width: "350px",
-    height: "200px",
+    width: "320px",
+    height: "144px",
     border: "2px solid #ccc",
-    borderRadius: "8px",
+    borderRadius: "4px",
     margin: "16px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   };
 
   const titleStyle = {
-    padding: "16px",
+    padding: "8px",
     borderBottom: "2px solid #ccc",
     textAlign: "center",
     fontWeight: "bold",
@@ -80,6 +87,7 @@ function PollCard({ poll }) {
   };
 
   return (
+    <div style={containerStyle}>
     <div style={cardStyle}>
       <div style={titleStyle}> {poll.title || "Poll Title"}</div>
       <div style={buttonContainerStyle}>
@@ -107,6 +115,7 @@ function PollCard({ poll }) {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 }

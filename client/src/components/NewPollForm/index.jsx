@@ -60,7 +60,7 @@ const PollForm = () => {
       {Auth.loggedIn() ? (
         <>
           <form
-             className="d-flex flex-column align-items-center justify-content-center col-lg-6 mx-auto"
+             className="col-lg-4"
             onSubmit={handleFormSubmit}
           >
             <h3>Create poll</h3>
@@ -97,7 +97,7 @@ const PollForm = () => {
 
             <div className="col-12">
               <button
-                className="btn btn-primary btn-block mt-2 py-3"
+                className="btn btn-primary btn-block mt-2 mb-4 py-3"
                 type="submit"
                 disabled={isSubmitDisabled}
               >
@@ -110,7 +110,7 @@ const PollForm = () => {
               </div>
             )}
           </form>
-          <div className="d-flex flex-column align-items-center justify-content-center col-lg-6 mx-auto">
+          <div>
           <Polls />
           </div>
         </>
