@@ -75,15 +75,15 @@ const Login = () => {
                 />
                 <div className="flex-row justify-space-between">
                   <button
-                    className="btn btn-primary"
-                    style={{ cursor: "pointer", flex: "1", margin: "4px" }}
+                    className="btn btn-primary py-3 mb-2"
+                    style={{ cursor: "pointer", flex: "1", marginRight: "4px" }}
                     onClick={(event) => handleFormSubmit(event, login)}
                   >
                     Login
                   </button>
                   <button
-                    className="btn btn-primary"
-                    style={{ cursor: "pointer", flex: "1", margin: "4px" }}
+                    className="btn btn-primary py-3 mb-2"
+                    style={{ cursor: "pointer", flex: "1", marginLeft: "4px" }}
                     onClick={(event) => handleFormSubmit(event, signup)}
                   >
                     Signup
