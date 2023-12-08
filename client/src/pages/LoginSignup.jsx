@@ -101,7 +101,16 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </main>
+
+      <div className="area">
+        <ul className="circles">
+          {[...Array(10)].map((_, index) => (
+            <li key={index}></li>
+          ))}
+        </ul>
+      </div>  
+      
+   </main>
   );
 };
 

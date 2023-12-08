@@ -8,6 +8,14 @@ const Home = () => {
   if (loading) return <h2>Loading...</h2>;
 
   return (
+    <div className="area">
+            <ul className="circles">
+              {[...Array(10)].map((_, index) => (
+                <li key={index}></li>
+              ))}
+            </ul>
+
+
     <main>
       <h3 className="d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto">
         Polls
@@ -21,6 +29,7 @@ const Home = () => {
           ))}
       </div>
     </main>
+    </div>
   );
 };
 
