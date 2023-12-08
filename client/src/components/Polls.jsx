@@ -25,7 +25,7 @@ export default function Polls() {
       >
         {polls &&
           polls.map((poll) => (
-            <div key={poll._id} className="col-lg-4 col-md-6 col-sm-12 mb-3">
+            <div key={poll._id || poll.thisPoll + poll.thatPoll} className="col-lg-4 col-md-6 col-sm-12 mb-3">
               <PollCard poll={poll} />
             </div>
           ))}
