@@ -8,7 +8,7 @@ export default function Polls() {
   if (!polls.length) {
     return (
       <h3 className="d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto">
-        No Polls Yet
+        No polls yet
       </h3>
     );
   }
