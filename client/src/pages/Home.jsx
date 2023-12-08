@@ -9,20 +9,16 @@ const Home = () => {
 
   return (
     <main>
-      <div className="flex-row justify-center">
-        <div
-          className="col-12 col-md-12 mb-4 p-3"
-          style={{
-            display: "flex",
-            flexDirection: "row", // Display in rows
-            flexWrap: "wrap", // Allow items to wrap to the next row
-          }}
-        >
-          {polls &&
-            polls.map((poll) => (
+      <h3 className="d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto">
+        Polls
+      </h3>
+      <div className="row justify-content-center">
+        {polls &&
+          polls.map((poll) => (
+            <div className="col-lg-4 mb-3">
               <PollCard poll={poll} key={poll.id} />
-            ))}
-        </div>
+            </div>
+          ))}
       </div>
     </main>
   );
