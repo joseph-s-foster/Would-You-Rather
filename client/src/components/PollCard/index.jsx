@@ -2,13 +2,17 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth.js";
 import { useMutation } from "@apollo/client";
-import { VOTE_ON_POLL_MUTATION } from "../../utils/mutations.js";
+import { VOTE_ON_POLL_MUTATION, DELETE_POLL_MUTATION } from "../../utils/mutations.js";
 import { QUERYME } from "../../utils/queries.js";
 
 function PollCard({ poll }) {
   const [userId, setUserId] = useState(null);
+  const [isDeleted, setIsDeleted] = useState(false); // State to track deletion
   const loggedIn = Auth.loggedIn();
   const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION, {
+    refetchQueries: [QUERYME, "queryMe"],
+  });
+  const [deletePoll] = useMutation(DELETE_POLL_MUTATION, {
     refetchQueries: [QUERYME, "queryMe"],
   });
 
@@ -32,6 +36,23 @@ function PollCard({ poll }) {
       console.error(error);
     }
   };
+
+  const handleDelete = async () => {
+    try {
+      // Assuming poll.id is the identifier for the poll
+      await deletePoll({
+        variables: { pollId: poll.id },
+      });
+      setIsDeleted(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (isDeleted) {
+    return null; // Do not render the component if the poll is deleted
+  }
+
 
   const containerStyle = {
     display: "flex",
@@ -130,7 +151,7 @@ function PollCard({ poll }) {
               </button>
               <button
                 style={deleteButtonStyle}
-                // onClick={() => /* handle the click event here */}
+                onClick={handleDelete} // Call the handleDelete function
               >
                 <img
                   src={"src/assets/trash.svg"}
