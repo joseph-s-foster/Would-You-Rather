@@ -7,7 +7,7 @@ import { QUERYME } from "../../utils/queries.js";
 
 function PollCard({ poll }) {
   const [userId, setUserId] = useState(null);
-  const [isDeleted, setIsDeleted] = useState(false); // State to track deletion
+  const [isDeleted, setIsDeleted] = useState(false);
   const loggedIn = Auth.loggedIn();
   const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION, {
     refetchQueries: [QUERYME, "queryMe"],
@@ -39,7 +39,6 @@ function PollCard({ poll }) {
 
   const handleDelete = async () => {
     try {
-      // Assuming poll.id is the identifier for the poll
       await deletePoll({
         variables: { pollId: poll.id },
       });
@@ -52,7 +51,6 @@ function PollCard({ poll }) {
   if (isDeleted) {
     return null; // Do not render the component if the poll is deleted
   }
-
 
   const containerStyle = {
     display: "flex",
@@ -117,27 +115,19 @@ function PollCard({ poll }) {
     backgroundColor: "rgba(173, 216, 230, 0.1)",
   };
 
-  const buttonStyleRed = {
-    ...buttonStyle,
-    backgroundColor: "rgba(255, 0, 0, 0.1)", // Slightly red background
-  };
-
-  const buttonStylePurple = {
-    ...buttonStyle,
-    backgroundColor: "rgba(128, 0, 128, 0.1)", // Slightly purple background
-  };
-
   const buttonStyleGreen = {
     ...buttonStyle,
     backgroundColor: "rgba(34, 200, 34, 0.1)", // Slightly green background
   };
+
+  const isCreator = poll.users;
 
   return (
     <div style={containerStyle}>
       <div style={cardStyle}>
         <div style={titleStyle}>
           {poll.title || "Poll Title"}
-          {loggedIn && (
+          {loggedIn && isCreator && (
             <>
               <button
                 style={editButtonStyle}
@@ -151,7 +141,7 @@ function PollCard({ poll }) {
               </button>
               <button
                 style={deleteButtonStyle}
-                onClick={handleDelete} // Call the handleDelete function
+                onClick={handleDelete}
               >
                 <img
                   src={"src/assets/trash.svg"}
@@ -191,4 +181,5 @@ function PollCard({ poll }) {
     </div>
   );
 }
+
 export default PollCard;
