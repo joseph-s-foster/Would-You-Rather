@@ -2,13 +2,17 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth.js";
 import { useMutation } from "@apollo/client";
-import { VOTE_ON_POLL_MUTATION } from "../../utils/mutations.js";
+import { VOTE_ON_POLL_MUTATION, DELETE_POLL_MUTATION } from "../../utils/mutations.js";
 import { QUERYME } from "../../utils/queries.js";
 
 function PollCard({ poll }) {
   const [userId, setUserId] = useState(null);
+  const [isDeleted, setIsDeleted] = useState(false);
   const loggedIn = Auth.loggedIn();
   const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION, {
+    refetchQueries: [QUERYME, "queryMe"],
+  });
+  const [deletePoll] = useMutation(DELETE_POLL_MUTATION, {
     refetchQueries: [QUERYME, "queryMe"],
   });
 
@@ -32,6 +36,21 @@ function PollCard({ poll }) {
       console.error(error);
     }
   };
+
+  const handleDelete = async () => {
+    try {
+      await deletePoll({
+        variables: { pollId: poll.id },
+      });
+      setIsDeleted(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (isDeleted) {
+    return null; // Do not render the component if the poll is deleted
+  }
 
   const containerStyle = {
     display: "flex",
@@ -96,27 +115,19 @@ function PollCard({ poll }) {
     backgroundColor: "rgba(173, 216, 230, 0.1)",
   };
 
-  const buttonStyleRed = {
-    ...buttonStyle,
-    backgroundColor: "rgba(255, 0, 0, 0.1)", // Slightly red background
-  };
-
-  const buttonStylePurple = {
-    ...buttonStyle,
-    backgroundColor: "rgba(128, 0, 128, 0.1)", // Slightly purple background
-  };
-
   const buttonStyleGreen = {
     ...buttonStyle,
     backgroundColor: "rgba(34, 200, 34, 0.1)", // Slightly green background
   };
+
+  const isCreator = poll.users;
 
   return (
     <div style={containerStyle}>
       <div style={cardStyle}>
         <div style={titleStyle}>
           {poll.title || "Poll Title"}
-          {loggedIn && (
+          {loggedIn && isCreator && (
             <>
               <button
                 style={editButtonStyle}
@@ -130,7 +141,7 @@ function PollCard({ poll }) {
               </button>
               <button
                 style={deleteButtonStyle}
-                // onClick={() => /* handle the click event here */}
+                onClick={handleDelete}
               >
                 <img
                   src={"src/assets/trash.svg"}
@@ -170,4 +181,5 @@ function PollCard({ poll }) {
     </div>
   );
 }
+
 export default PollCard;
