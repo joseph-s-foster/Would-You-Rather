@@ -2,17 +2,14 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth.js";
 import { useMutation } from "@apollo/client";
-import { VOTE_ON_POLL_MUTATION } from "../../utils/mutations.js";
-import { QUERYME } from "../../utils/queries.js"
+import { VOTE_ON_POLL_MUTATION, DELETE_POLL_MUTATION } from "../../utils/mutations.js";
+import { GET_POLLS_QUERY, QUERYME } from "../../utils/queries.js";
 
 function PollCard({ poll }) {
   const [userId, setUserId] = useState(null);
   const loggedIn = Auth.loggedIn();
   const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION, {
-    refetchQueries: [
-      QUERYME,
-      'queryMe'
-    ]
+    refetchQueries: [QUERYME, "queryMe"],
   });
 
   useEffect(() => {
@@ -20,6 +17,13 @@ function PollCard({ poll }) {
       setUserId(Auth.getProfile().data._id);
     }
   }, [loggedIn]);
+
+  const [deletePoll, { error: deleteError }] = useMutation(DELETE_POLL_MUTATION, {
+    refetchQueries: [
+      { query: QUERYME },
+      { query: GET_POLLS_QUERY },
+    ],
+  });
 
   const handleVote = async (option) => {
     try {
@@ -36,8 +40,22 @@ function PollCard({ poll }) {
     }
   };
 
+  const handleDeletePoll = async (pollId) => {
+    try {
+      const { data } = await deletePoll({
+        variables: {
+          pollId: pollId,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const containerStyle = {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   };
@@ -61,9 +79,10 @@ function PollCard({ poll }) {
   };
 
   const buttonContainerStyle = {
-    display: "flex", // Updated to use flexbox
-    flexDirection: "row", // Align children in a row
-    flexGrow: 1, // Allow buttons to grow and fill available space
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    flexGrow: 1,
   };
 
   const buttonStyle = {
@@ -74,58 +93,66 @@ function PollCard({ poll }) {
     borderRadius: "8px",
     width: "100%",
   };
-  // Button color style options below
+
   const buttonStyleBlue = {
     ...buttonStyle,
-    backgroundColor: "rgba(173, 216, 230, 0.1)", // Slightly blue background
-  };
-
-  const buttonStyleRed = {
-    ...buttonStyle,
-    backgroundColor: "rgba(255, 0, 0, 0.1)", // Slightly red background
-  };
-
-  const buttonStylePurple = {
-    ...buttonStyle,
-    backgroundColor: "rgba(128, 0, 128, 0.1)", // Slightly purple background
+    backgroundColor: "rgba(173, 216, 230, 0.1)",
   };
 
   const buttonStyleGreen = {
     ...buttonStyle,
-    backgroundColor: "rgba(34, 200, 34, 0.1)", // Slightly green background
+    backgroundColor: "rgba(34, 200, 34, 0.1)",
+  };
+
+  const deleteButtonStyle = {
+    width: "100%",
+    height: "40px",
+    background: "none",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+    marginTop: "8px",
+    cursor: "pointer",
   };
 
   return (
     <div style={containerStyle}>
-    <div style={cardStyle}>
-      <div style={titleStyle}> {poll.title || "Poll Title"}</div>
-      <div style={buttonContainerStyle}>
-        <div style={buttonStyleBlue}>
-          <button
-            disabled={!loggedIn}
-            onClick={() => handleVote('Option1')}
-            value="Option1"
-            style={{ width: "100%", height: "100%", background: "none" }}
-          >
-            {" "}
-            {poll.thisPoll}
-            <p>{poll.voteOption1}</p>
-          </button>
+      <div style={cardStyle}>
+        <div style={titleStyle}>{poll.title || "Poll Title"}</div>
+        <div style={buttonContainerStyle}>
+          <div style={buttonStyleBlue}>
+            <button
+              disabled={!loggedIn}
+              onClick={() => handleVote("Option1")}
+              value="Option1"
+              style={{ width: "100%", height: "100%", background: "none" }}
+            >
+              {poll.thisPoll}
+              <p>{poll.voteOption1}</p>
+            </button>
+          </div>
+          <div style={buttonStyleGreen}>
+            <button
+              disabled={!loggedIn}
+              onClick={() => handleVote("Option2")}
+              value="Option2"
+              style={{ width: "100%", height: "100%", background: "none" }}
+            >
+              {poll.thatPoll}
+              <p>{poll.voteOption2}</p>
+            </button>
+          </div>
         </div>
-        <div style={buttonStyleGreen}>
+        {loggedIn && (
           <button
-            disabled={!loggedIn}
-            onClick={() => handleVote('Option2')}
-            value="Option2"
-            style={{ width: "100%", height: "100%", background: "none" }}
+            style={deleteButtonStyle}
+            onClick={() => handleDeletePoll(poll.id)}
           >
-            {poll.thatPoll}
-            <p>{poll.voteOption2}</p>
+            Delete Poll
           </button>
-        </div>
+        )}
       </div>
-    </div>
     </div>
   );
 }
+
 export default PollCard;
