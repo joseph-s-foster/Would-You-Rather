@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth.js";
 import { useMutation } from "@apollo/client";
-import { VOTE_ON_POLL_MUTATION, DELETE_POLL_MUTATION } from "../../utils/mutations.js";
+import {
+  VOTE_ON_POLL_MUTATION,
+  DELETE_POLL_MUTATION,
+} from "../../utils/mutations.js";
 import { GET_POLLS_QUERY, QUERYME } from "../../utils/queries.js";
 
 function PollCard({ poll }) {
@@ -18,40 +20,12 @@ function PollCard({ poll }) {
     }
   }, [loggedIn]);
 
-  const [deletePoll, { error: deleteError }] = useMutation(DELETE_POLL_MUTATION, {
-    refetchQueries: [
-      { query: QUERYME },
-      { query: GET_POLLS_QUERY },
-    ],
-  });
-
-  const handleVote = async (option) => {
-    try {
-      const { data } = await vote({
-        variables: {
-          pollId: poll.id,
-          option: option,
-          userId: userId,
-        },
-      });
-      console.log(data);
-    } catch (error) {
-      console.error(error);
+  const [deletePoll, { error: deleteError }] = useMutation(
+    DELETE_POLL_MUTATION,
+    {
+      refetchQueries: [{ query: QUERYME }, { query: GET_POLLS_QUERY }],
     }
-  };
-
-  const handleDeletePoll = async (pollId) => {
-    try {
-      const { data } = await deletePoll({
-        variables: {
-          pollId: pollId,
-        },
-      });
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  );
 
   const containerStyle = {
     display: "flex",
@@ -62,13 +36,15 @@ function PollCard({ poll }) {
 
   const cardStyle = {
     display: "flex",
+    flexGrow: "1",
     flexDirection: "column",
     width: "320px",
-    height: "144px",
+    height: "auto",
     border: "2px solid #ccc",
     borderRadius: "4px",
     margin: "16px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    position: "relative",
   };
 
   const titleStyle = {
@@ -82,6 +58,7 @@ function PollCard({ poll }) {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
     flexGrow: 1,
   };
 
@@ -102,16 +79,6 @@ function PollCard({ poll }) {
   const buttonStyleGreen = {
     ...buttonStyle,
     backgroundColor: "rgba(34, 200, 34, 0.1)",
-  };
-
-  const deleteButtonStyle = {
-    width: "100%",
-    height: "40px",
-    background: "none",
-    border: "1px solid #ccc",
-    borderRadius: "4px",
-    marginTop: "8px",
-    cursor: "pointer",
   };
 
   return (
@@ -143,13 +110,17 @@ function PollCard({ poll }) {
           </div>
         </div>
         {loggedIn && (
-          <button
-            style={deleteButtonStyle}
-            onClick={() => handleDeletePoll(poll.id)}
-          >
-            Delete Poll
-          </button>
-        )}
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <button
+      onClick={() => handleDeletePoll(poll.id)}
+      className="bg-danger text-white m-1"
+      style={{ height: '40px', width: '75%', borderRadius: '5px' }}
+    >
+      Delete Poll
+    </button>
+  </div>
+)}
+
       </div>
     </div>
   );
