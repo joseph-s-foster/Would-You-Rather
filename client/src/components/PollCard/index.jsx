@@ -54,16 +54,26 @@ function PollCard({ poll }) {
   };
 
   const titleStyle = {
+    position: "relative",
     padding: "8px",
     borderBottom: "2px solid #ccc",
     textAlign: "center",
     fontWeight: "bold",
   };
+  
+  const deleteButtonStyle = {
+    position: "absolute",
+    top: "4px",
+    right: "1px",
+    border: "none",
+    background: "none",
+    cursor: "pointer",
+  };
 
   const buttonContainerStyle = {
-    display: "flex", // Updated to use flexbox
-    flexDirection: "row", // Align children in a row
-    flexGrow: 1, // Allow buttons to grow and fill available space
+    display: "flex",
+    flexDirection: "row",
+    flexGrow: 1,
   };
 
   const buttonStyle = {
@@ -74,10 +84,10 @@ function PollCard({ poll }) {
     borderRadius: "8px",
     width: "100%",
   };
-  // Button color style options below
+  
   const buttonStyleBlue = {
     ...buttonStyle,
-    backgroundColor: "rgba(173, 216, 230, 0.1)", // Slightly blue background
+    backgroundColor: "rgba(173, 216, 230, 0.1)",
   };
 
   const buttonStyleRed = {
@@ -98,7 +108,15 @@ function PollCard({ poll }) {
   return (
     <div style={containerStyle}>
     <div style={cardStyle}>
-      <div style={titleStyle}> {poll.title || "Poll Title"}</div>
+    <div style={titleStyle}>
+  {poll.title || "Poll Title"}
+  <button
+    style={deleteButtonStyle}
+    // onClick={() => /* handle the click event here */}
+  >
+    <img src={'src/assets/trash.svg'} alt="Delete" style={{ width: '20px', height: '20px' }} />
+  </button>
+</div>
       <div style={buttonContainerStyle}>
         <div style={buttonStyleBlue}>
           <button
