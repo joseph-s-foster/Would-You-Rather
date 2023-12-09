@@ -3,16 +3,13 @@ import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth.js";
 import { useMutation } from "@apollo/client";
 import { VOTE_ON_POLL_MUTATION } from "../../utils/mutations.js";
-import { QUERYME } from "../../utils/queries.js"
+import { QUERYME } from "../../utils/queries.js";
 
 function PollCard({ poll }) {
   const [userId, setUserId] = useState(null);
   const loggedIn = Auth.loggedIn();
   const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION, {
-    refetchQueries: [
-      QUERYME,
-      'queryMe'
-    ]
+    refetchQueries: [QUERYME, "queryMe"],
   });
 
   useEffect(() => {
@@ -60,7 +57,16 @@ function PollCard({ poll }) {
     textAlign: "center",
     fontWeight: "bold",
   };
-  
+
+  const editButtonStyle = {
+    position: "absolute",
+    top: "6px",
+    left: "1px",
+    border: "none",
+    background: "none",
+    cursor: "pointer",
+  };
+
   const deleteButtonStyle = {
     position: "absolute",
     top: "4px",
@@ -84,7 +90,7 @@ function PollCard({ poll }) {
     borderRadius: "8px",
     width: "100%",
   };
-  
+
   const buttonStyleBlue = {
     ...buttonStyle,
     backgroundColor: "rgba(173, 216, 230, 0.1)",
@@ -107,42 +113,60 @@ function PollCard({ poll }) {
 
   return (
     <div style={containerStyle}>
-    <div style={cardStyle}>
-    <div style={titleStyle}>
-  {poll.title || "Poll Title"}
-  <button
-    style={deleteButtonStyle}
-    // onClick={() => /* handle the click event here */}
-  >
-    <img src={'src/assets/trash.svg'} alt="Delete" style={{ width: '20px', height: '20px' }} />
-  </button>
-</div>
-      <div style={buttonContainerStyle}>
-        <div style={buttonStyleBlue}>
-          <button
-            disabled={!loggedIn}
-            onClick={() => handleVote('Option1')}
-            value="Option1"
-            style={{ width: "100%", height: "100%", background: "none" }}
-          >
-            {" "}
-            {poll.thisPoll}
-            <p>{poll.voteOption1}</p>
-          </button>
+      <div style={cardStyle}>
+        <div style={titleStyle}>
+          {poll.title || "Poll Title"}
+          {loggedIn && (
+            <>
+              <button
+                style={editButtonStyle}
+                // onClick={() => /* handle the click event here */}
+              >
+                <img
+                  src={"src/assets/pencil.svg"}
+                  alt="Edit"
+                  style={{ width: "18px", height: "18px" }}
+                />
+              </button>
+              <button
+                style={deleteButtonStyle}
+                // onClick={() => /* handle the click event here */}
+              >
+                <img
+                  src={"src/assets/trash.svg"}
+                  alt="Delete"
+                  style={{ width: "20px", height: "20px" }}
+                />
+              </button>
+            </>
+          )}
         </div>
-        <div style={buttonStyleGreen}>
-          <button
-            disabled={!loggedIn}
-            onClick={() => handleVote('Option2')}
-            value="Option2"
-            style={{ width: "100%", height: "100%", background: "none" }}
-          >
-            {poll.thatPoll}
-            <p>{poll.voteOption2}</p>
-          </button>
+        <div style={buttonContainerStyle}>
+          <div style={buttonStyleBlue}>
+            <button
+              disabled={!loggedIn}
+              onClick={() => handleVote("Option1")}
+              value="Option1"
+              style={{ width: "100%", height: "100%", background: "none" }}
+            >
+              {" "}
+              {poll.thisPoll}
+              <p>{poll.voteOption1}</p>
+            </button>
+          </div>
+          <div style={buttonStyleGreen}>
+            <button
+              disabled={!loggedIn}
+              onClick={() => handleVote("Option2")}
+              value="Option2"
+              style={{ width: "100%", height: "100%", background: "none" }}
+            >
+              {poll.thatPoll}
+              <p>{poll.voteOption2}</p>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
