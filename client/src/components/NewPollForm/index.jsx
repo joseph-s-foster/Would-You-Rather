@@ -10,10 +10,11 @@ const PollForm = () => {
   const [title, setTitle] = useState("");
   const [thisPoll, setThisPoll] = useState("");
   const [thatPoll, setThatPoll] = useState("");
+  const [error, setError] = useState(null);
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [createPoll, { error }] = useMutation(CREATE_POLL);
+  const [createPoll, { error: mutationError }] = useMutation(CREATE_POLL);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +35,17 @@ const PollForm = () => {
       document.location.reload();
     } catch (err) {
       console.error(err.message);
+
+      // Check if it's a duplicate key violation error
+      if (err.message.includes("duplicate key error")) {
+        const errorMessage = "This poll already exists.";
+        setError(errorMessage);
+        console.error(errorMessage); // Log the error for further debugging if needed
+      } else {
+        const errorMessage = "An error occurred while creating the card.";
+        setError(errorMessage);
+        console.error(errorMessage); // Log the error for further debugging if needed
+      }
     }
   };
 
@@ -103,7 +115,7 @@ const PollForm = () => {
             </div>
             {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
+                {error}
               </div>
             )}
           </form>
