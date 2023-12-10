@@ -47,9 +47,9 @@ const Login = () => {
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-4 col-md-6 col-sm-6">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login / Signup</h4>
-          <div className="card-body">
+        <div className="card bg-black" style={{borderRadius: "4px"}}>
+          <h2 className="card-header bg-black text-light text-center">Welcome</h2>
+          <div className="card-body bg-black text-light">
             {(loginData || signupData) ? (
               <p>
                 Success! You may now head{" "}
@@ -58,7 +58,7 @@ const Login = () => {
             ) : (
               <form>
                 <input
-                  className="form-input"
+                  className="form-input bg-black"
                   placeholder="Username"
                   name="username"
                   type="text"
@@ -66,7 +66,7 @@ const Login = () => {
                   onChange={handleInputChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input bg-black"
                   placeholder="Password"
                   name="password"
                   type="password"
@@ -75,14 +75,14 @@ const Login = () => {
                 />
                 <div className="flex-row justify-space-between">
                   <button
-                    className="btn btn-primary py-3 mb-2"
+                    className="btn btn-lg btn-danger py-3 mb-2"
                     style={{ cursor: "pointer", flex: "1", marginRight: "4px" }}
                     onClick={(event) => handleFormSubmit(event, login)}
                   >
                     Login
                   </button>
                   <button
-                    className="btn btn-primary py-3 mb-2"
+                    className="btn btn-lg btn-danger py-3 mb-2"
                     style={{ cursor: "pointer", flex: "1", marginLeft: "4px" }}
                     onClick={(event) => handleFormSubmit(event, signup)}
                   >

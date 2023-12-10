@@ -101,39 +101,44 @@ function PollCard({ poll }) {
   };
 
   const cardStyle = {
+    // background: "#000",
     display: "flex",
     flexDirection: "column",
     width: "320px",
     height: "144px",
-    border: "2px solid #ccc",
-    borderRadius: "4px",
-    margin: "16px",
+    // border: "1px solid #e64c66",
+    borderRadius: "2px",
+    backgroundColor: "#000",
+    margin: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   };
 
   const titleStyle = {
+    color: "#d9e9e8",
+    fontSize: "1.5rem",
+    // background: "#000",
     position: "relative",
     padding: "8px",
-    borderBottom: "2px solid #ccc",
+    // borderBottom: "1px solid #e64c66",
     textAlign: "center",
     fontWeight: "bold",
   };
 
   const editButtonStyle = {
+    background: "#000",
     position: "absolute",
     top: "6px",
     left: "1px",
     border: "none",
-    background: "none",
     cursor: "pointer",
   };
 
   const deleteButtonStyle = {
+    background: "#000",
     position: "absolute",
     top: "4px",
     right: "1px",
     border: "none",
-    background: "none",
     cursor: "pointer",
   };
 
@@ -147,19 +152,18 @@ function PollCard({ poll }) {
     flex: 1,
     margin: "5px",
     cursor: "pointer",
-    border: "none",
-    borderRadius: "8px",
+    borderRadius: "2px",
     width: "100%",
   };
 
-  const buttonStyleBlue = {
+  const button1 = {
     ...buttonStyle,
-    backgroundColor: "rgba(173, 216, 230, 0.1)",
+    backgroundColor: "#e64c66",
   };
 
-  const buttonStyleGreen = {
+  const button2 = {
     ...buttonStyle,
-    backgroundColor: "rgba(34, 200, 34, 0.1)", // Slightly green background
+    backgroundColor: "#d9e9e8",
   };
 
   const isCreator = poll.users;
@@ -218,24 +222,24 @@ function PollCard({ poll }) {
           )}
         </div>
         <div style={buttonContainerStyle}>
-          <div style={buttonStyleBlue}>
+          <div style={button1}>
             <button
               disabled={!loggedIn}
               onClick={() => handleVote("Option1")}
               value="Option1"
-              style={{ width: "100%", height: "100%", background: "none" }}
+              style={{ width: "100%", height: "100%", color: "#d9e9e8", background: "none", paddingTop: "16px"}}
             >
               {" "}
               {poll.thisPoll}
               <p>{poll.voteOption1}</p>
             </button>
           </div>
-          <div style={buttonStyleGreen}>
+          <div style={button2}>
             <button
               disabled={!loggedIn}
               onClick={() => handleVote("Option2")}
               value="Option2"
-              style={{ width: "100%", height: "100%", background: "none" }}
+              style={{ width: "100%", height: "100%", color: "#1a1a1a", background: "none", paddingTop: "16px"}}
             >
               {poll.thatPoll}
               <p>{poll.voteOption2}</p>

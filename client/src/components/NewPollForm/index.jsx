@@ -10,10 +10,11 @@ const PollForm = () => {
   const [title, setTitle] = useState("");
   const [thisPoll, setThisPoll] = useState("");
   const [thatPoll, setThatPoll] = useState("");
+  const [error, setError] = useState(null);
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [createPoll, { error }] = useMutation(CREATE_POLL);
+  const [createPoll, { error: mutationError }] = useMutation(CREATE_POLL);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +35,17 @@ const PollForm = () => {
       document.location.reload();
     } catch (err) {
       console.error(err.message);
+
+      // Check if it's a duplicate key violation error
+      if (err.message.includes("duplicate key error")) {
+        const errorMessage = "This poll already exists.";
+        setError(errorMessage);
+        console.error(errorMessage); // Log the error for further debugging if needed
+      } else {
+        const errorMessage = "An error occurred while creating the card.";
+        setError(errorMessage);
+        console.error(errorMessage); // Log the error for further debugging if needed
+      }
     }
   };
 
@@ -57,13 +69,11 @@ const PollForm = () => {
 
   return (
     <div>
-      {Auth.loggedIn() ? (
+      {Auth.loggedIn() && (
         <>
-          <form
-             className="col-lg-6"
-            onSubmit={handleFormSubmit}
-          >
-            <h3>Create poll</h3>
+        <div className="col-lg-6 display-flex bg-black p-2 mx-auto">
+          <form className="col-lg-12" onSubmit={handleFormSubmit}>
+            <h3 className="text-light">Create poll</h3>
             <div className="col-12">
               <input
                 type="text"
@@ -82,7 +92,7 @@ const PollForm = () => {
                 value={thisPoll}
                 className="form-input w-100"
                 onChange={handleChange}
-              ></input>
+              />
             </div>
             <div className="col-12">
               <input
@@ -94,10 +104,10 @@ const PollForm = () => {
                 onChange={handleChange}
               ></input>
             </div>
-
+  
             <div className="col-12">
               <button
-                className="btn btn-primary btn-block mt-2 mb-4 py-3"
+                className="btn btn-danger btn-lg btn-block mt-2 py-3"
                 type="submit"
                 disabled={isSubmitDisabled}
               >
@@ -106,23 +116,17 @@ const PollForm = () => {
             </div>
             {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
+                {error}
               </div>
             )}
           </form>
+          </div>
           <div>
-          <Polls />
+            <Polls />
           </div>
         </>
-      ) : (
-        <p>
-          {" "}
-          <Link to="/login">Login / Signup </Link>
-          to create polls, view data, or submit votes.
-        </p>
       )}
     </div>
   );
-};
-
+}
 export default PollForm;
