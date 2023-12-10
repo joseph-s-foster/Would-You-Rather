@@ -71,8 +71,9 @@ const PollForm = () => {
     <div>
       {Auth.loggedIn() && (
         <>
-          <form className="col-lg-6" onSubmit={handleFormSubmit}>
-            <h3 style={{color:"#fff"}}>Create poll</h3>
+        <div className="col-lg-6 display-flex bg-black p-2 mx-auto">
+          <form className="col-lg-12" onSubmit={handleFormSubmit}>
+            <h3 className="text-light">Create poll</h3>
             <div className="col-12">
               <input
                 type="text"
@@ -106,7 +107,7 @@ const PollForm = () => {
   
             <div className="col-12">
               <button
-                className="btn btn-danger btn-block mt-2 mb-4 py-3"
+                className="btn btn-danger btn-block mt-2 py-3"
                 type="submit"
                 disabled={isSubmitDisabled}
               >
@@ -119,6 +120,7 @@ const PollForm = () => {
               </div>
             )}
           </form>
+          </div>
           <div>
             <Polls />
           </div>
