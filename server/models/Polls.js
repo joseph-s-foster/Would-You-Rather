@@ -4,11 +4,12 @@ const pollSchema = new Schema({
   thisPoll: {
     type: String,
     required: true,
-   
+   unique: true,
   },
   thatPoll: {
     type: String,
     required: true,
+    unique: true,
   },
   voteOption1: {
     type: Number,
@@ -23,6 +24,7 @@ const pollSchema = new Schema({
   title: {
     type: String,
     required: true,
+    unique: true,
   },
   users: [
     {
