@@ -77,6 +77,7 @@ const resolvers = {
       throw AuthenticationError;
 
     },
+
     voteOnPoll: async (_, { pollId, option, userId }) => {
       const poll = await Polls.findById(pollId);
 
