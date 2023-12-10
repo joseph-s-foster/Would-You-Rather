@@ -107,7 +107,7 @@ const PollForm = () => {
   
             <div className="col-12">
               <button
-                className="btn btn-danger btn-block mt-2 py-3"
+                className="btn btn-danger btn-lg btn-block mt-2 py-3"
                 type="submit"
                 disabled={isSubmitDisabled}
               >
