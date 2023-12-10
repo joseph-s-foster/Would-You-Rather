@@ -18,7 +18,10 @@ export default function Polls() {
 
   return (
     <div>
-      <h3 className="d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto">
+      <h3
+        className="d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto"
+        style={{ color: "#fff" }}
+      >
         User polls
       </h3>
       <div className="row justify-content-center">

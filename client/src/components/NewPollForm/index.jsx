@@ -72,7 +72,7 @@ const PollForm = () => {
       {Auth.loggedIn() && (
         <>
           <form className="col-lg-6" onSubmit={handleFormSubmit}>
-            <h3>Create poll</h3>
+            <h3 style={{color:"#fff"}}>Create poll</h3>
             <div className="col-12">
               <input
                 type="text"
@@ -106,7 +106,7 @@ const PollForm = () => {
   
             <div className="col-12">
               <button
-                className="btn btn-primary btn-block mt-2 mb-4 py-3"
+                className="btn btn-danger btn-block mt-2 mb-4 py-3"
                 type="submit"
                 disabled={isSubmitDisabled}
               >
