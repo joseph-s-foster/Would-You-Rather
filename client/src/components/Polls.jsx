@@ -17,7 +17,7 @@ export default function Polls() {
   if (error) return <div>{error.message}</div>; // DEV ONLY
 
   return (
-    <div>
+    <div className="col-lg-12 p-2">
       <h3
         className="text-light d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto"
       >
