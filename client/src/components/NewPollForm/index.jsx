@@ -57,12 +57,9 @@ const PollForm = () => {
 
   return (
     <div>
-      {Auth.loggedIn() ? (
+      {Auth.loggedIn() && (
         <>
-          <form
-             className="col-lg-6"
-            onSubmit={handleFormSubmit}
-          >
+          <form className="col-lg-6" onSubmit={handleFormSubmit}>
             <h3>Create poll</h3>
             <div className="col-12">
               <input
@@ -82,7 +79,7 @@ const PollForm = () => {
                 value={thisPoll}
                 className="form-input w-100"
                 onChange={handleChange}
-              ></input>
+              />
             </div>
             <div className="col-12">
               <input
@@ -94,7 +91,7 @@ const PollForm = () => {
                 onChange={handleChange}
               ></input>
             </div>
-
+  
             <div className="col-12">
               <button
                 className="btn btn-primary btn-block mt-2 mb-4 py-3"
@@ -111,18 +108,11 @@ const PollForm = () => {
             )}
           </form>
           <div>
-          <Polls />
+            <Polls />
           </div>
         </>
-      ) : (
-        <p>
-          {" "}
-          <Link to="/login">Login / Signup </Link>
-          to create polls, view data, or submit votes.
-        </p>
       )}
     </div>
   );
-};
-
+}
 export default PollForm;

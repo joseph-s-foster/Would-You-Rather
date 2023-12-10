@@ -48,7 +48,7 @@ const Login = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-4 col-md-6 col-sm-6">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login / Signup</h4>
+          <h4 className="card-header bg-dark text-light p-2">Welcome</h4>
           <div className="card-body">
             {(loginData || signupData) ? (
               <p>
