@@ -5,7 +5,9 @@ const Header = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
+    window.location.href = "/"; // Redirect to the home page
   };
+  
 
   return (
     <header className="bg-primary text-light mb-4 flex-row align-center">
@@ -14,15 +16,22 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Would You Rather</h1>
           </Link>
+          {Auth.loggedIn() ? (
+            <>
+            </>
+          ) : (
+            <>
           <p className="m-0">
-            See top of the minute polls where decisions shape the fun!
+            Login to manage polls and submit data.
           </p>
+          </>
+          )}
         </div>
         <div>
           {Auth.loggedIn() ? (
             <>
              <Link className="btn btn-lg btn-danger m-1" to="/user-polls">
-                Manage Polls
+                Create Polls
               </Link>
               <button className="btn btn-lg btn-light ml-1" onClick={logout}>
                 Logout
