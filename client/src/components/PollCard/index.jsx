@@ -65,6 +65,7 @@ function PollCard({ poll }) {
     height: "144px",
     border: "2px solid #ccc",
     borderRadius: "4px",
+    backgroundColor: "#FFF",
     margin: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   };
@@ -73,6 +74,7 @@ function PollCard({ poll }) {
     position: "relative",
     padding: "8px",
     borderBottom: "2px solid #ccc",
+    backgroundColor: "#FFF",
     textAlign: "center",
     fontWeight: "bold",
   };
@@ -82,7 +84,6 @@ function PollCard({ poll }) {
     top: "6px",
     left: "1px",
     border: "none",
-    background: "none",
     cursor: "pointer",
   };
 
@@ -91,7 +92,6 @@ function PollCard({ poll }) {
     top: "4px",
     right: "1px",
     border: "none",
-    background: "none",
     cursor: "pointer",
   };
 
@@ -158,7 +158,7 @@ function PollCard({ poll }) {
               disabled={!loggedIn}
               onClick={() => handleVote("Option1")}
               value="Option1"
-              style={{ width: "100%", height: "100%", background: "none" }}
+              style={{ width: "100%", height: "100%", background: "none"}}
             >
               {" "}
               {poll.thisPoll}
@@ -170,7 +170,7 @@ function PollCard({ poll }) {
               disabled={!loggedIn}
               onClick={() => handleVote("Option2")}
               value="Option2"
-              style={{ width: "100%", height: "100%", background: "none" }}
+              style={{ width: "100%", height: "100%", background: "none"}}
             >
               {poll.thatPoll}
               <p>{poll.voteOption2}</p>
