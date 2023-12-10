@@ -14,15 +14,16 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="m-0">Would You Rather</h1>
+            <h1 className="mt-2">Would You Rather</h1>
           </Link>
           {Auth.loggedIn() ? (
             <>
+            <p></p>
             </>
           ) : (
             <>
-          <p className="m-0">
-            Login to manage polls and submit data.
+          <p className="m-1">
+            Login to create polls and submit data.
           </p>
           </>
           )}
@@ -30,16 +31,16 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-             <Link className="btn btn-lg btn-danger m-1" to="/user-polls">
-                Create Polls
+             <Link className="btn btn-lg btn-danger m-2" to="/user-polls">
+                User Polls
               </Link>
-              <button className="btn btn-lg btn-light ml-1" onClick={logout}>
+              <button className="btn btn-lg btn-light ml-2" onClick={logout}>
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info ml-1" to="/login">
+              <Link className="btn btn-lg btn-info m-2" to="/login">
                 Login
               </Link>
             </>
