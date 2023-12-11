@@ -1,8 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Auth from "../../utils/auth";
 
 const Header = () => {
   const location = useLocation();
+
+  const [isUserPollsPage, setIsUserPollsPage] = useState(false);
+
+  useEffect(() => {
+    setIsUserPollsPage(location.pathname === "/user-polls");
+  }, [location.pathname]);
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -19,7 +27,7 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <p></p>
           ) : (
-            location.pathname !== "/login" && (
+            !isUserPollsPage && (
               <p className="mb-2">Login to create polls and submit data.</p>
             )
           )}
@@ -27,16 +35,22 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-danger m-2" to="/user-polls">
-                User Polls
-              </Link>
+              {isUserPollsPage ? (
+                <Link className="btn btn-lg btn-danger m-2" to="/">
+                  Home
+                </Link>
+              ) : (
+                <Link className="btn btn-lg btn-danger m-2" to="/user-polls">
+                  User Polls
+                </Link>
+              )}
               <button className="btn btn-lg btn-light ml-2" onClick={logout}>
                 Logout
               </button>
             </>
           ) : (
             // Render the "Login" button only if not on the "/login" page
-            location.pathname !== "/login" && (
+            !isUserPollsPage && (
               <Link className="btn btn-lg btn-danger m-2" to="/login">
                 Login
               </Link>

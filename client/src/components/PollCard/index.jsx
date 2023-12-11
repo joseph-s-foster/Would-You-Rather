@@ -105,9 +105,9 @@ function PollCard({ poll }) {
     display: "flex",
     flexDirection: "column",
     width: "320px",
-    height: "144px",
+    height: "124px",
     // border: "1px solid #e64c66",
-    borderRadius: "2px",
+    borderRadius: "4px",
     backgroundColor: "#000",
     margin: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -150,15 +150,16 @@ function PollCard({ poll }) {
 
   const buttonStyle = {
     flex: 1,
-    margin: "5px",
+    margin: "4px",
     cursor: "pointer",
     borderRadius: "2px",
     width: "100%",
+    height: "72px",
   };
 
   const button1 = {
     ...buttonStyle,
-    backgroundColor: "#e64c66",
+    backgroundColor: "#6600ff",
   };
 
   const button2 = {
@@ -227,7 +228,7 @@ function PollCard({ poll }) {
               disabled={!loggedIn}
               onClick={() => handleVote("Option1")}
               value="Option1"
-              style={{ width: "100%", height: "100%", color: "#d9e9e8", background: "none", paddingTop: "16px"}}
+              style={{ width: "100%", height: "100%", color: "#fff", background: "none", paddingTop: "12px"}}
             >
               {" "}
               {poll.thisPoll}
@@ -239,7 +240,7 @@ function PollCard({ poll }) {
               disabled={!loggedIn}
               onClick={() => handleVote("Option2")}
               value="Option2"
-              style={{ width: "100%", height: "100%", color: "#1a1a1a", background: "none", paddingTop: "16px"}}
+              style={{ width: "100%", height: "100%", color: "#1a1a1a", background: "none", paddingTop: "12px"}}
             >
               {poll.thatPoll}
               <p>{poll.voteOption2}</p>
