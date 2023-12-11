@@ -153,12 +153,11 @@ export const CREATE_POLL_MUTATION = gql`
 `;
 
 export const EDIT_POLL_MUTATION = gql`
-mutation EditPoll($pollId: ID!, $thisPoll: String, $thatPoll: String, $title: String) {
-  editPoll(pollId: $pollId, thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
+mutation EditPoll($pollId: ID!,  $title: String) {
+  editPoll(pollId: $pollId, title: $title) {
     id
     title
-    thisPoll
-    thatPoll
+    
   }
 }
 `;

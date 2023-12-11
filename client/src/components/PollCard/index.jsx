@@ -65,11 +65,10 @@ function PollCard({ poll }) {
 
   const handleEdit = async () => {
     try {
-      console.log([poll]);
       await editPoll({
         variables: {
           pollId: poll.id,
-          title: poll.title,
+          title: editedFields.title,
         },
       });
       setIsEdited(true);
