@@ -71,7 +71,7 @@ const PollForm = () => {
     <div>
       {Auth.loggedIn() && (
         <>
-        <div className="col-lg-6 display-flex bg-black p-2 mx-auto">
+        <div className="col-lg-6 display-flex bg-black p-2 mx-auto" style={{borderRadius: "4px"}}>
           <form className="col-lg-12" onSubmit={handleFormSubmit}>
             <h3 className="text-light">Create poll</h3>
             <div className="col-12">
