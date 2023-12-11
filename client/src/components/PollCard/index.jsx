@@ -2,17 +2,32 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth.js";
 import { useMutation } from "@apollo/client";
-import { VOTE_ON_POLL_MUTATION, DELETE_POLL_MUTATION } from "../../utils/mutations.js";
+import {
+  VOTE_ON_POLL_MUTATION,
+  DELETE_POLL_MUTATION,
+  EDIT_POLL_MUTATION,
+} from "../../utils/mutations.js";
 import { QUERYME } from "../../utils/queries.js";
 
 function PollCard({ poll }) {
+  // switch is editing to (false) after testing
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedFields, setEditedFields] = useState({
+    title: poll.title || "Poll Title",
+    thisPoll: poll.thisPoll || "",
+    thatPoll: poll.thatPoll || "",
+  });
   const [userId, setUserId] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isEdited, setIsEdited] = useState(false);
   const loggedIn = Auth.loggedIn();
   const [vote, { error }] = useMutation(VOTE_ON_POLL_MUTATION, {
     refetchQueries: [QUERYME, "queryMe"],
   });
   const [deletePoll] = useMutation(DELETE_POLL_MUTATION, {
+    refetchQueries: [QUERYME, "queryMe"],
+  });
+  const [editPoll] = useMutation(EDIT_POLL_MUTATION, {
     refetchQueries: [QUERYME, "queryMe"],
   });
 
@@ -46,6 +61,33 @@ function PollCard({ poll }) {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleEdit = async () => {
+    try {
+      console.log([poll]);
+      await editPoll({
+        variables: {
+          pollId: poll.id,
+          title: poll.title,
+        },
+      });
+      setIsEdited(true);
+      setIsEditing(false); // Exit edit mode after successful edit
+      console.log(poll)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    // Reset the editedFields to the original values
+    setEditedFields({
+      title: poll.title || "Poll Title",
+      thisPoll: poll.thisPoll || "",
+      thatPoll: poll.thatPoll || "",
+    });
+    setIsEditing(false);
   };
 
   if (isDeleted) {
@@ -131,29 +173,52 @@ function PollCard({ poll }) {
     <div style={containerStyle}>
       <div style={cardStyle}>
         <div style={titleStyle}>
-          {poll.title || "Poll Title"}
+          {isEditing ? (
+            // Render input fields when in edit mode
+            <>
+              <input
+                type="text"
+                value={editedFields.title}
+                onChange={(e) =>
+                  setEditedFields({ ...editedFields, title: e.target.value })
+                }
+              />
+              {/* Add similar input fields for thisPoll and thatPoll */}
+            </>
+          ) : (
+            // Render title when not in edit mode
+            poll.title || "Poll Title"
+          )}
           {loggedIn && isCreator && (
             <>
-              <button
-                style={editButtonStyle}
-                // onClick={() => /* handle the click event here */}
-              >
-                <img
-                  src={"src/assets/pencil.svg"}
-                  alt="Edit"
-                  style={{ width: "18px", height: "18px" }}
-                />
-              </button>
-              <button
-                style={deleteButtonStyle}
-                onClick={handleDelete}
-              >
-                <img
-                  src={"src/assets/trash.svg"}
-                  alt="Delete"
-                  style={{ width: "20px", height: "20px" }}
-                />
-              </button>
+              {isEditing ? (
+                // Render save and cancel buttons when in edit mode
+                <>
+                  <button onClick={handleEdit}> save</button>
+                  <button onClick={handleCancelEdit}>C</button>
+                </>
+              ) : (
+                // Render edit and delete buttons when not in edit mode
+                <>
+                  <button
+                    style={editButtonStyle}
+                    onClick={() => setIsEditing(true)}
+                  >
+                    <img
+                      src={"src/assets/pencil.svg"}
+                      alt="Edit"
+                      style={{ width: "18px", height: "18px" }}
+                    />
+                  </button>
+                  <button style={deleteButtonStyle} onClick={handleDelete}>
+                    <img
+                      src={"src/assets/trash.svg"}
+                      alt="Delete"
+                      style={{ width: "20px", height: "20px" }}
+                    />
+                  </button>
+                </>
+              )}
             </>
           )}
         </div>
