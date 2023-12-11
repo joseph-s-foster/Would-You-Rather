@@ -13,9 +13,9 @@ function PollCard({ poll }) {
   // switch is editing to (false) after testing
   const [isEditing, setIsEditing] = useState(false);
   const [editedFields, setEditedFields] = useState({
-    title: poll.title || "Poll Title",
-    thisPoll: poll.thisPoll || "",
-    thatPoll: poll.thatPoll || "",
+    title: poll.title ,
+    thisPoll: poll.thisPoll ,
+    thatPoll: poll.thatPoll ,
   });
   const [userId, setUserId] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -65,11 +65,10 @@ function PollCard({ poll }) {
 
   const handleEdit = async () => {
     try {
-      console.log([poll]);
       await editPoll({
         variables: {
           pollId: poll.id,
-          title: poll.title,
+          title: editedFields.title,
         },
       });
       setIsEdited(true);
@@ -89,6 +88,12 @@ function PollCard({ poll }) {
     });
     setIsEditing(false);
   };
+  const handleChange = e=> {
+    const {name,value}=e.target 
+    console.log(e.target.value)
+    setEditedFields({...editedFields,[name]:value})
+  }
+  
 
   if (isDeleted) {
     return null; // Do not render the component if the poll is deleted
@@ -131,6 +136,10 @@ function PollCard({ poll }) {
     left: "1px",
     border: "none",
     cursor: "pointer",
+  };
+
+  const input ={
+    color: "black",
   };
 
   const deleteButtonStyle = {
@@ -176,11 +185,12 @@ function PollCard({ poll }) {
           {isEditing ? (
             // Render input fields when in edit mode
             <>
-              <input
+              <input 
+              style={input}
                 type="text"
+                name='title'
                 value={editedFields.title}
-                onChange={(e) =>
-                  setEditedFields({ ...editedFields, title: e.target.value })
+                onChange={ handleChange
                 }
               />
               {/* Add similar input fields for thisPoll and thatPoll */}
@@ -195,7 +205,7 @@ function PollCard({ poll }) {
                 // Render save and cancel buttons when in edit mode
                 <>
                   <button onClick={handleEdit}> save</button>
-                  <button onClick={handleCancelEdit}>C</button>
+                  <button onClick={handleCancelEdit}>X</button>
                 </>
               ) : (
                 // Render edit and delete buttons when not in edit mode
