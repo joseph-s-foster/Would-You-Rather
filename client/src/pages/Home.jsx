@@ -3,7 +3,7 @@ import PollCard from "../components/PollCard";
 import { GET_POLLS_QUERY } from "../utils/queries";
 
 const Home = () => {
-  const { loading, data } = useQuery(GET_POLLS_QUERY);
+  const { loading, data } = useQuery(GET_POLLS_QUERY, { pollInterval: 3000 });
   const polls = data?.getPolls || [];
   if (loading) return <h2>Loading...</h2>;
 
