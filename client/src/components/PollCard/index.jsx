@@ -215,14 +215,14 @@ function PollCard({ poll }) {
                     onClick={() => setIsEditing(true)}
                   >
                     <img
-                      src={"src/assets/pencil.svg"}
+                      src={"/src/assets/pencil.svg"}
                       alt="Edit"
                       style={{ width: "18px", height: "18px" }}
                     />
                   </button>
                   <button style={deleteButtonStyle} onClick={handleDelete}>
                     <img
-                      src={"src/assets/trash.svg"}
+                      src={"/src/assets/trash.svg"}
                       alt="Delete"
                       style={{ width: "20px", height: "20px" }}
                     />

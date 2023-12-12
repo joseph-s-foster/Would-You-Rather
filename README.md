@@ -25,7 +25,6 @@ Node.js for the server.
 * Emoticons for a voting icon
 * Uploadable pictures for Poll Cards
 * Ability to "tag" friends/ users in poll comments
-* 
 
 ## Acceptance Criteria 
 
