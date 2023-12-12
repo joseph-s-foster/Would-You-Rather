@@ -50,10 +50,10 @@ Download the files from the repo, install the files on your server, and run the 
 
 This is a responsive, REACT site where someone may sign up or login and create, edit, delete, and vote on polls.
 
-Link to view: [Would You Rather](https://culturedcuisine-59da43e6096e.herokuapp.com/)
+Link to view: [Would You Rather](https://wyr-3b5b304bab70.herokuapp.com/)
 
 Screenshot of website:
-![Would You Rather](culturedcuisine-snap.png "Would You Rather")
+![Would You Rather](wyr.png "Would You Rather")
 
 ## Credits
 
