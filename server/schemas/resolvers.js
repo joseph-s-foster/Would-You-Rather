@@ -18,7 +18,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    getPolls: async () => Polls.find().populate('users'),
+    getPolls: async () => Polls.find().sort({ createdAt: -1 }).populate('users'),
   },
 
   Mutation: {

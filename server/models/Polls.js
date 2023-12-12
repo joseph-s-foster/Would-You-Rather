@@ -34,7 +34,11 @@ const pollSchema = new Schema({
   ],
   comments: [
     commentSchema
-  ]
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Polls = model('Polls', pollSchema);
