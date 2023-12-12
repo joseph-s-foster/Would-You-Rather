@@ -18,7 +18,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    getPolls: async () => Polls.find().populate('users'),
+    getPolls: async () => Polls.find().sort({ createdAt: -1 }).populate('users'),
   },
 
   Mutation: {
@@ -77,6 +77,7 @@ const resolvers = {
       throw AuthenticationError;
 
     },
+
     voteOnPoll: async (_, { pollId, option, userId }) => {
       const poll = await Polls.findById(pollId);
 
@@ -102,7 +103,7 @@ const resolvers = {
 
       return poll;
     },
-    editPoll: async (_, { pollId, thisPoll, thatPoll, title }) => {
+    editPoll: async (_, { pollId, title }) => {
 
       try {
         const poll = await Polls.findById(pollId);
@@ -112,13 +113,11 @@ const resolvers = {
         }
 
         // Update fields if provided
-        if (thisPoll) poll.thisPoll = thisPoll;
-        if (thatPoll) poll.thatPoll = thatPoll;
+        
         if (title) poll.title = title;
 
         // Use the markModified() method to mark modified paths before saving
-        poll.markModified('thisPoll');
-        poll.markModified('thatPoll');
+        
         poll.markModified('title');
 
         await poll.save();

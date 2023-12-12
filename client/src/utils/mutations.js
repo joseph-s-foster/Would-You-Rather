@@ -55,47 +55,48 @@ mutation CreatePoll($thisPoll: String!, $thatPoll: String!, $title: String!) {
   }
 }`
 ;
-export const EDIT_POLL = gql`
-  mutation EditPoll(
-    $pollId: ID!
-    $thisPoll: String
-    $thatPoll: String
-    $title: String
-  ) {
-    editPoll(
-      pollId: $pollId
-      thisPoll: $thisPoll
-      thatPoll: $thatPoll
-      title: $title
-    ) {
-      id
-      thisPoll
-      thatPoll
-      voteOption1
-      voteOption2
-      title
-      users {
-        _id
-        username
-        password
-        polls {
-          id
-          thisPoll
-          thatPoll
-          voteOption1
-          voteOption2
-          title
-        }
-      }
-      comments {
-        _id
-        commentText
-        username
-        createdAt
-      }
-    }
-  }
-`;
+// export const EDIT_POLL = gql`
+//   mutation EditPoll(
+//     $pollId: ID!
+//     $thisPoll: String
+//     $thatPoll: String
+//     $title: String
+//   ) {
+//     editPoll(
+//       pollId: $pollId
+//       thisPoll: $thisPoll
+//       thatPoll: $thatPoll
+//       title: $title
+//     ) {
+//       id
+//       thisPoll
+//       thatPoll
+//       voteOption1
+//       voteOption2
+//       title
+//       users {
+//         _id
+//         username
+//         password
+//         polls {
+//           id
+//           thisPoll
+//           thatPoll
+//           voteOption1
+//           voteOption2
+//           title
+//         }
+//       }
+//       comments {
+//         _id
+//         commentText
+//         username
+//         createdAt
+//       }
+//     }
+//   }
+// `;
+
 export const ADD_COMMENT = gql`
 mutation AddComment($pollId: ID!, $commentText: String!) {
   addComment(pollId: $pollId, commentText: $commentText) {
@@ -152,15 +153,13 @@ export const CREATE_POLL_MUTATION = gql`
 `;
 
 export const EDIT_POLL_MUTATION = gql`
-mutation EditPoll($pollId: ID!, $thisPoll: String, $thatPoll: String, $title: String) {
-  editPoll(pollId: $pollId, thisPoll: $thisPoll, thatPoll: $thatPoll, title: $title) {
+mutation EditPoll($pollId: ID!,  $title: String) {
+  editPoll(pollId: $pollId, title: $title) {
     id
     title
-    thisPoll
-    thatPoll
+    
   }
 }
-
 `;
 
 export const DELETE_POLL_MUTATION = gql`
