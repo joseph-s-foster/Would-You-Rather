@@ -6,15 +6,17 @@ const Header = () => {
   const location = useLocation();
 
   const [isUserPollsPage, setIsUserPollsPage] = useState(false);
+  const [isLoginPage, setIsLoginPage] = useState(false);
 
   useEffect(() => {
     setIsUserPollsPage(location.pathname === "/user-polls");
+    setIsLoginPage(location.pathname === "/login");
   }, [location.pathname]);
 
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
-    window.location.href = "/"; // Redirect to the home page
+    window.location.href = "/";
   };
 
   return (
@@ -27,7 +29,7 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <p></p>
           ) : (
-            !isUserPollsPage && (
+            !isUserPollsPage && !isLoginPage && (
               <p className="mb-2">Login to create polls and submit data.</p>
             )
           )}
@@ -49,10 +51,13 @@ const Header = () => {
               </button>
             </>
           ) : (
-            // Render the "Login" button only if not on the "/login" page
+            // Render the "Login" button or "Home" button based on the page
             !isUserPollsPage && (
-              <Link className="btn btn-lg btn-danger m-2" to="/login">
-                Login
+              <Link
+                className="btn btn-lg btn-danger m-2"
+                to={isLoginPage ? "/" : "/login"}
+              >
+                {isLoginPage ? "Home" : "Login"}
               </Link>
             )
           )}
