@@ -1,13 +1,10 @@
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import App from './App.jsx';
-import Home from './pages/Home';
-import Login from './pages/LoginSignup';
-// import PollPage from './pages/PollPage';
-import NewPollForm from './components/NewPollForm';
-// import UserPage from './pages/UserPage';
-import ErrorPage from './pages/ErrorPage';
+import UserPolls from "./pages/UserPolls.jsx";
+import App from "./App.jsx";
+import Home from "./pages/Home";
+import Login from "./pages/LoginSignup";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -17,19 +14,20 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
-      }, {
-        path: '/login',
-        element: <Login />
+        element: <Home />,
       },
       {
-        path: '/user-polls',
-        element: <NewPollForm />
-      }
-    ]
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/user-polls",
+        element: <UserPolls />,
+      },
+    ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
-)
+);

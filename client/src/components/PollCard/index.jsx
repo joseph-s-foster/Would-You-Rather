@@ -139,7 +139,8 @@ function PollCard({ poll }) {
   };
 
   const input ={
-    color: "black",
+    color: "white",
+    background: "black",
   };
 
   const deleteButtonStyle = {
@@ -204,7 +205,7 @@ function PollCard({ poll }) {
               {isEditing ? (
                 // Render save and cancel buttons when in edit mode
                 <>
-                  <button onClick={handleEdit}> save</button>
+                  <button onClick={handleEdit}> Save</button>
                   <button onClick={handleCancelEdit}>X</button>
                 </>
               ) : (

@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { QUERYME } from "../utils/queries";
 
 export default function Polls() {
-  const { data, loading, error } = useQuery(QUERYME, { pollInterval: 3000 });
+  const { data, loading, error } = useQuery(QUERYME, { pollInterval: 1000 });
   const polls = data?.me.polls || [];
   if (!polls.length) {
     return (
