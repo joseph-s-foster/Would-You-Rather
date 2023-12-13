@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import Polls from "../Polls.jsx";
-import { CREATE_POLL } from "../../utils/mutations";
+import Polls from "../components/Polls";
+import { CREATE_POLL } from "../utils/mutations";
 
-import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 
 const PollForm = () => {
   const [title, setTitle] = useState("");
@@ -71,55 +71,58 @@ const PollForm = () => {
     <div>
       {Auth.loggedIn() && (
         <>
-        <div className="col-lg-6 display-flex bg-black p-2 mx-auto" style={{borderRadius: "4px"}}>
-          <form className="col-lg-12" onSubmit={handleFormSubmit}>
-            <h3 className="text-light">Create poll</h3>
-            <div className="col-12">
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={title}
-                className="form-input w-100"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-12">
-              <input
-                type="text"
-                name="thisPoll"
-                placeholder="Ex: Apple"
-                value={thisPoll}
-                className="form-input w-100"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-12">
-              <input
-                type="text"
-                name="thatPoll"
-                placeholder="Ex: Android"
-                value={thatPoll}
-                className="form-input w-100"
-                onChange={handleChange}
-              ></input>
-            </div>
-  
-            <div className="col-12">
-              <button
-                className="btn btn-danger btn-lg btn-block mt-2 py-3"
-                type="submit"
-                disabled={isSubmitDisabled}
-              >
-                Submit
-              </button>
-            </div>
-            {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error}
+          <div
+            className="col-lg-6 display-flex bg-black p-2 mx-auto"
+            style={{ borderRadius: "4px" }}
+          >
+            <form className="col-lg-12" onSubmit={handleFormSubmit}>
+              <h3 className="text-light">Create poll</h3>
+              <div className="col-12">
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  value={title}
+                  className="form-input w-100"
+                  onChange={handleChange}
+                />
               </div>
-            )}
-          </form>
+              <div className="col-12">
+                <input
+                  type="text"
+                  name="thisPoll"
+                  placeholder="Ex: Apple"
+                  value={thisPoll}
+                  className="form-input w-100"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-12">
+                <input
+                  type="text"
+                  name="thatPoll"
+                  placeholder="Ex: Android"
+                  value={thatPoll}
+                  className="form-input w-100"
+                  onChange={handleChange}
+                ></input>
+              </div>
+
+              <div className="col-12">
+                <button
+                  className="btn btn-danger btn-lg btn-block mt-2 py-3"
+                  type="submit"
+                  disabled={isSubmitDisabled}
+                >
+                  Submit
+                </button>
+              </div>
+              {error && (
+                <div className="col-12 my-3 bg-danger text-white p-3">
+                  {error}
+                </div>
+              )}
+            </form>
           </div>
           <div>
             <Polls />
@@ -128,5 +131,5 @@ const PollForm = () => {
       )}
     </div>
   );
-}
+};
 export default PollForm;
