@@ -13,9 +13,9 @@ function PollCard({ poll }) {
   // switch is editing to (false) after testing
   const [isEditing, setIsEditing] = useState(false);
   const [editedFields, setEditedFields] = useState({
-    title: poll.title ,
-    thisPoll: poll.thisPoll ,
-    thatPoll: poll.thatPoll ,
+    title: poll.title,
+    thisPoll: poll.thisPoll,
+    thatPoll: poll.thatPoll,
   });
   const [userId, setUserId] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -73,7 +73,7 @@ function PollCard({ poll }) {
       });
       setIsEdited(true);
       setIsEditing(false); // Exit edit mode after successful edit
-      console.log(poll)
+      console.log(poll);
     } catch (error) {
       console.error(error);
     }
@@ -88,12 +88,11 @@ function PollCard({ poll }) {
     });
     setIsEditing(false);
   };
-  const handleChange = e=> {
-    const {name,value}=e.target 
-    console.log(e.target.value)
-    setEditedFields({...editedFields,[name]:value})
-  }
-  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(e.target.value);
+    setEditedFields({ ...editedFields, [name]: value });
+  };
 
   if (isDeleted) {
     return null; // Do not render the component if the poll is deleted
@@ -138,7 +137,7 @@ function PollCard({ poll }) {
     cursor: "pointer",
   };
 
-  const input ={
+  const input = {
     color: "white",
     background: "black",
   };
@@ -186,13 +185,12 @@ function PollCard({ poll }) {
           {isEditing ? (
             // Render input fields when in edit mode
             <>
-              <input 
-              style={input}
+              <input
+                style={input}
                 type="text"
-                name='title'
+                name="title"
                 value={editedFields.title}
-                onChange={ handleChange
-                }
+                onChange={handleChange}
               />
               {/* Add similar input fields for thisPoll and thatPoll */}
             </>
@@ -205,8 +203,22 @@ function PollCard({ poll }) {
               {isEditing ? (
                 // Render save and cancel buttons when in edit mode
                 <>
-                  <button onClick={handleEdit}> Save</button>
-                  <button onClick={handleCancelEdit}>X</button>
+                  <button onClick={handleEdit}>
+                    {" "}
+                    <img
+                      src={"/save.svg"}
+                      alt="save"
+                      style={{ width: "20px", height: "20px" }}
+                    />
+                  </button>
+                  <button onClick={handleCancelEdit}>
+                    {" "}
+                    <img
+                      src={"/undo.svg"}
+                      alt="undo"
+                      style={{ width: "20px", height: "20px" }}
+                    />
+                  </button>
                 </>
               ) : (
                 // Render edit and delete buttons when not in edit mode
@@ -239,7 +251,13 @@ function PollCard({ poll }) {
               disabled={!loggedIn}
               onClick={() => handleVote("Option1")}
               value="Option1"
-              style={{ width: "100%", height: "100%", color: "#fff", background: "none", paddingTop: "12px"}}
+              style={{
+                width: "100%",
+                height: "100%",
+                color: "#fff",
+                background: "none",
+                paddingTop: "12px",
+              }}
             >
               {" "}
               {poll.thisPoll}
@@ -251,7 +269,13 @@ function PollCard({ poll }) {
               disabled={!loggedIn}
               onClick={() => handleVote("Option2")}
               value="Option2"
-              style={{ width: "100%", height: "100%", color: "#1a1a1a", background: "none", paddingTop: "12px"}}
+              style={{
+                width: "100%",
+                height: "100%",
+                color: "#1a1a1a",
+                background: "none",
+                paddingTop: "12px",
+              }}
             >
               {poll.thatPoll}
               <p>{poll.voteOption2}</p>
