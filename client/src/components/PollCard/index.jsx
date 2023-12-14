@@ -208,17 +208,14 @@ function PollCard({ poll }) {
                     <img
                       src={"/save.svg"}
                       alt="save"
-                      style={{ width: "20px", height: "20px" }}
+                      style={{ width: "18px", height: "18px" }}
                     />
                   </button>
-                  <button onClick={handleCancelEdit}>
-                    {" "}
-                    <img
-                      src={"/undo.svg"}
-                      alt="undo"
-                      style={{ width: "20px", height: "20px" }}
-                    />
-                  </button>
+                  <button onClick={handleCancelEdit}>   <img
+                      src={"/x-circle.svg"}
+                      alt="cancel"
+                      style={{ width: "18px", height: "18px" }}
+                    /></button>
                 </>
               ) : (
                 // Render edit and delete buttons when not in edit mode
