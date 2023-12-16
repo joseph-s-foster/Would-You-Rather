@@ -24,7 +24,7 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="mb-2 mt-1">Would You Rather</h1>
+            <h1 className="mb-1">Would You Rather</h1>
           </Link>
           {Auth.loggedIn() ? (
             <p></p>

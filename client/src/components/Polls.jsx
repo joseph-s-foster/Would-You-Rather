@@ -5,6 +5,7 @@ import { QUERYME } from "../utils/queries";
 export default function Polls() {
   const { data, loading, error } = useQuery(QUERYME, { pollInterval: 1000 });
   const polls = data?.me.polls || [];
+  
   if (!polls.length) {
     return (
       <h3 className="d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto">
@@ -18,9 +19,7 @@ export default function Polls() {
 
   return (
     <div className="col-lg-12 p-2">
-      <h3
-        className="text-light d-flex flex-column align-items-center justify-content-center col-lg-12 mx-auto"
-      >
+      <h3 className="text-light d-flex flex-column align-items-center justify-content-center mx-auto">
         User polls
       </h3>
       <div className="row justify-content-center">
