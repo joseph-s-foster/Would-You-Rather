@@ -30,18 +30,20 @@ const Home = () => {
             </div>
           ))}
       </div>
-      <div className="container text-center mb5">
+      <div className="container text-center">
         <button
           onClick={() => handlePageChange(currPage - 1)}
           disabled={currPage === 1}
-          className="btn btn-primary mr-1" // Adjust the styling as needed
+          className="btn btn-primary mr-1"
+          style={{width:"95px"}}
         >
           Prev
         </button>
         <button
           onClick={() => handlePageChange(currPage + 1)}
           disabled={currPage === totalPages}
-          className="btn btn-primary ml-1" // Adjust the styling as needed
+          className="btn btn-primary ml-1"
+          style={{width:"96px"}}
         >
           Next
         </button>
