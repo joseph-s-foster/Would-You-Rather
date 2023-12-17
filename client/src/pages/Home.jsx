@@ -30,7 +30,7 @@ const Home = () => {
             </div>
           ))}
       </div>
-      <div className="d-flex justify-content-center">
+      <div className="container text-center mb5">
         <button
           onClick={() => handlePageChange(currPage - 1)}
           disabled={currPage === 1}
