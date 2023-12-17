@@ -113,7 +113,7 @@ function PollCard({ poll }) {
     // border: "1px solid #e64c66",
     borderRadius: "4px",
     backgroundColor: "#000",
-    margin: "8px",
+    margin: "4px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   };
 
