@@ -2,12 +2,14 @@ import { useQuery } from "@apollo/client";
 import PollCard from "../components/PollCard";
 import { GET_POLLS_QUERY } from "../utils/queries";
 import { useState, useEffect } from "react";
+import SearchBar from "../components/SearchBar";
 
 const Home = () => {
   const { loading, data } = useQuery(GET_POLLS_QUERY, { pollInterval: 1000 });
   const polls = data?.getPolls || [];
   const [currPage, setCurrPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9); // Default items per page
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     // Check for mobile view and adjust itemsPerPage
@@ -28,18 +30,40 @@ const Home = () => {
 
   const startIndex = (currPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currItems = polls.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(polls.length / itemsPerPage);
+
+  // Filter polls based on the search input
+  const filteredPolls = polls.filter((poll) =>
+    poll.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
+  const currItems = filteredPolls.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filteredPolls.length / itemsPerPage);
 
   const handlePageChange = (newPage) => {
     setCurrPage(newPage);
+    // Reset the search input when the page changes
+    // setSearchInput("");
+  };
+
+  const handleSearchChange = (event) => {
+    const { value } = event.target;
+    setSearchInput(value);
+    setCurrPage(1); // Reset page when the search input changes
   };
 
   if (loading) return <h2>Loading...</h2>;
 
   return (
     <main className="d-flex flex-column align-items-center">
-      <h3 className="text-light">Polls</h3>
+      <div className="row mb-3 justify-content-between">
+        <h3 className="text-light ml-3 mt-1">Polls</h3>
+        <div className="col-auto">
+          <SearchBar
+            handleSearchChange={handleSearchChange}
+            searchInput={searchInput}
+          />
+        </div>
+      </div>
       <div className="row justify-content-center">
         {currItems &&
           currItems.map((poll) => (
