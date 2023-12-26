@@ -110,7 +110,7 @@ const PollForm = () => {
 
               <div className="col-12">
                 <button
-                  className="btn btn-danger btn-lg btn-block mt-2 py-3"
+                  className="btn btn-primary btn-lg btn-block mt-2 py-3"
                   type="submit"
                   disabled={isSubmitDisabled}
                 >
@@ -118,7 +118,7 @@ const PollForm = () => {
                 </button>
               </div>
               {error && (
-                <div className="col-12 my-3 bg-danger text-white p-3">
+                <div className="col-12 my-3 bg-primary text-white p-3">
                   {error}
                 </div>
               )}

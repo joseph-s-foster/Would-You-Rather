@@ -42,7 +42,7 @@ const Home = () => {
   const handlePageChange = (newPage) => {
     setCurrPage(newPage);
     // Reset the search input when the page changes
-    setSearchInput("");
+    // setSearchInput("");
   };
 
   const handleSearchChange = (event) => {
@@ -56,7 +56,7 @@ const Home = () => {
   return (
     <main className="d-flex flex-column align-items-center">
       <div className="row mb-3 justify-content-between">
-        <h3 className="text-light mb-0">Polls</h3>
+        <h3 className="text-light ml-3 mt-1">Polls</h3>
         <div className="col-auto">
           <SearchBar
             handleSearchChange={handleSearchChange}

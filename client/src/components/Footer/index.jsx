@@ -14,7 +14,7 @@ const Footer = () => {
             aria-label="heart"
             aria-hidden="false"
           >
-            💜
+            ❤️
           </span>{" "}
           by Group1
         </h4>

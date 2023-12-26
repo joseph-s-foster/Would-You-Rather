@@ -39,11 +39,11 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               {isUserPollsPage ? (
-                <Link className="btn btn-lg btn-danger m-2" to="/">
+                <Link className="btn btn-lg btn-primary m-2" to="/">
                   Home
                 </Link>
               ) : (
-                <Link className="btn btn-lg btn-danger m-2" to="/user-polls">
+                <Link className="btn btn-lg btn-primary m-2" to="/user-polls">
                   User Polls
                 </Link>
               )}
@@ -55,7 +55,7 @@ const Header = () => {
             // Render the "Login" button or "Home" button based on the page
             !isUserPollsPage && (
               <Link
-                className="btn btn-lg btn-danger m-2"
+                className="btn btn-lg btn-primary m-2"
                 to={isLoginPage ? "/" : "/login"}
               >
                 {isLoginPage ? "Home" : "Login"}
