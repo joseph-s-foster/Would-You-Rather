@@ -1114,6 +1114,10 @@ a:hover {
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
 
+.searchbar {
+width: 75%;
+}
+
 form {
   width: 100%;
 }
@@ -1295,6 +1299,10 @@ button:hover {
   width: 100%;
   /* padding-right: 16px;
   padding-left: 16px; */
+}
+
+.searchbar {
+  justify-content: right;
 }
 
 .col-auto {

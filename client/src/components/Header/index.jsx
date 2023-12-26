@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Auth from "../../utils/auth";
+import SearchBar from "../SearchBar";
 
 const Header = () => {
   const location = useLocation();
