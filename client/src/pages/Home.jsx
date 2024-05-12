@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import PollCard from "../components/PollCard";
 import { GET_POLLS_QUERY } from "../utils/queries";
 import { useState, useEffect } from "react";
+import Background from "../components/Background";
 import SearchBar from "../components/SearchBar";
 
 const Home = () => {
@@ -56,7 +57,7 @@ const Home = () => {
   return (
     <main className="d-flex flex-column align-items-center">
       <div className="row mb-3 justify-content-between">
-        <h3 className="text-light ml-3 mt-1">Polls</h3>
+        <h3 className="text-light ml-3 mt-4">Polls</h3>
         <div className="col-auto">
           <SearchBar
             handleSearchChange={handleSearchChange}

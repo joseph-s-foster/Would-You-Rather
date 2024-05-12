@@ -19,6 +19,7 @@
  */
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 /**
@@ -972,6 +973,38 @@ a:hover {
 .display-flex {
   display: flex !important;
 }
+
+.background {
+  background-image: url('./assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  z-index: -1000;
+}
+
+.cta {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  font-size: 5rem;
+}
+
+@media screen and  (max-width: 480px) {
+  .background {
+    min-height: 78vh;
+  }
+  .cta {
+    height: 70vh;
+    font-size: 2rem;
+  }
+  
+}
+
 
 .btn {
   text-align: center;

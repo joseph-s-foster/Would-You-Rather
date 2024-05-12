@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBar = ({ handleSearchChange, searchInput }) => {
   return (
-    <input
+    <input className="mt-3"
       style={{
         flex: "1", // Use flex-grow to fill remaining width
         height: "48px",
@@ -11,6 +11,7 @@ const SearchBar = ({ handleSearchChange, searchInput }) => {
         background: "#d9e9e8",
         marginLeft: "16px",
         marginRight: "16px",
+        paddingLeft: "8px",
         width: "94.5%", // Set width to 100% to fill the available space
         // maxWidth: "1075px" // Optional: Set a maximum width if needed
       }}
