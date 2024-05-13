@@ -26,7 +26,7 @@ const Footer = () => {
           <img
             src="./github.png"
             alt="github logo"
-            style={{ height: "24px", width: "24px" }}
+            style={{ height: "48px", width: "48px" }}
           />
         </a>
       </div>

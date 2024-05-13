@@ -1,8 +1,8 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import PollCard from "../components/PollCard";
 import { GET_POLLS_QUERY } from "../utils/queries";
 import { useState, useEffect } from "react";
-import Background from "../components/Background";
 import SearchBar from "../components/SearchBar";
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     // Check for mobile view and adjust itemsPerPage
     const handleResize = () => {
-      setItemsPerPage(window.innerWidth <= 768 ? 3 : 9);
+      setItemsPerPage(window.innerWidth <= 768 ? 4 : 12);
     };
 
     handleResize(); // Set initial value
@@ -55,43 +55,45 @@ const Home = () => {
   if (loading) return <h2>Loading...</h2>;
 
   return (
-    <main className="d-flex flex-column align-items-center">
-      <div className="row mb-3 justify-content-between">
-        <h3 className="text-light ml-3 mt-4">Polls</h3>
-        <div className="col-auto">
-          <SearchBar
-            handleSearchChange={handleSearchChange}
-            searchInput={searchInput}
-          />
+    <>
+      <main className="d-flex flex-column align-items-center">
+        <div className="row mb-3 justify-content-between">
+          <h3 className="text-light ml-3 mt-4">Polls</h3>
+          <div className="col-auto">
+            <SearchBar
+              handleSearchChange={handleSearchChange}
+              searchInput={searchInput}
+            />
+          </div>
         </div>
-      </div>
-      <div className="row justify-content-center">
-        {currItems &&
-          currItems.map((poll) => (
-            <div className="col-lg-4 mb-3" key={poll.id}>
-              {poll.id && <PollCard poll={poll} />}
-            </div>
-          ))}
-      </div>
-      <div className="container text-center">
-        <button
-          onClick={() => handlePageChange(currPage - 1)}
-          disabled={currPage === 1}
-          className="btn btn-primary mr-1"
-          style={{ width: "95px" }}
-        >
-          Prev
-        </button>
-        <button
-          onClick={() => handlePageChange(currPage + 1)}
-          disabled={currPage === totalPages}
-          className="btn btn-primary ml-1"
-          style={{ width: "96px" }}
-        >
-          Next
-        </button>
-      </div>
-    </main>
+        <div className="row justify-content-center">
+          {currItems &&
+            currItems.map((poll) => (
+              <div className="col-lg-4 mb-3" key={poll.id}>
+                {poll.id && <PollCard poll={poll} />}
+              </div>
+            ))}
+        </div>
+        <div className="container text-center mt-2 mb-2">
+          <button
+            onClick={() => handlePageChange(currPage - 1)}
+            disabled={currPage === 1}
+            className="btn btn-primary mr-1"
+            style={{ width: "95px" }}
+          >
+            Prev
+          </button>
+          <button
+            onClick={() => handlePageChange(currPage + 1)}
+            disabled={currPage === totalPages}
+            className="btn btn-primary ml-1"
+            style={{ width: "96px" }}
+          >
+            Next
+          </button>
+        </div>
+      </main>
+    </>
   );
 };
 
