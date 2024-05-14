@@ -114,7 +114,7 @@ function PollCard({ poll }) {
     borderRadius: "4px",
     backgroundColor: "#000",
     margin: "4px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   };
 
   const titleStyle = {
