@@ -402,7 +402,7 @@ h6 {
 
 p {
   font-size: 1.1rem;
-  margin: 0 0 1rem;
+  margin: 0;
   line-height: 1.5;
 }
 
@@ -990,7 +990,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 60vh;
+  margin-top: 58vh;
   font-size: 5rem;
 }
 
@@ -1022,8 +1022,11 @@ a:hover {
     min-height: 80vh;
   }
   .cta {
-    margin-top: 480px;
-    font-size: 2.5rem;
+    margin-top: 95%;
+    font-size: 2.25rem;
+  }
+  .caret {
+    width: 48px;
   }
 }
 
@@ -1257,8 +1260,8 @@ button:hover {
 }
 
 .container {
-  width: 85%;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }

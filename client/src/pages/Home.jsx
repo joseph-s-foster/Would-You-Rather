@@ -1,9 +1,11 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
+import Background from "../components/Background";
 import PollCard from "../components/PollCard";
 import { GET_POLLS_QUERY } from "../utils/queries";
 import { useState, useEffect } from "react";
 import SearchBar from "../components/SearchBar";
+
 
 const Home = () => {
   const { loading, data } = useQuery(GET_POLLS_QUERY, { pollInterval: 1000 });
@@ -15,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     // Check for mobile view and adjust itemsPerPage
     const handleResize = () => {
-      setItemsPerPage(window.innerWidth <= 768 ? 4 : 12);
+      setItemsPerPage(window.innerWidth <= 768 ? 3 : 9);
     };
 
     handleResize(); // Set initial value
@@ -56,9 +58,10 @@ const Home = () => {
 
   return (
     <>
+    <Background />
       <main className="d-flex flex-column align-items-center">
-        <div className="row mb-3 justify-content-between">
-          <h3 className="text-light ml-3 mt-4">Polls</h3>
+        <div className="row m-4">
+          <h3 className="text-light m-4">Polls</h3>
           <div className="col-auto">
             <SearchBar
               handleSearchChange={handleSearchChange}

@@ -109,7 +109,7 @@ function PollCard({ poll }) {
     display: "flex",
     flexDirection: "column",
     width: "320px",
-    height: "124px",
+    height: "160px",
     // border: "1px solid #e64c66",
     borderRadius: "4px",
     backgroundColor: "#000",
@@ -153,17 +153,18 @@ function PollCard({ poll }) {
 
   const buttonContainerStyle = {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     flexGrow: 1,
   };
 
   const buttonStyle = {
-    flex: 1,
+    // flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     margin: "4px",
     cursor: "pointer",
     borderRadius: "2px",
-    width: "100%",
-    height: "72px",
+    width: "97%",
   };
 
   const button1 = {
@@ -250,10 +251,10 @@ function PollCard({ poll }) {
               value="Option1"
               style={{
                 width: "100%",
-                height: "100%",
+                // height: "32px",
                 color: "#fff",
                 background: "none",
-                paddingTop: "12px",
+                // paddingTop: "12px",
               }}
             >
               {" "}
@@ -268,10 +269,10 @@ function PollCard({ poll }) {
               value="Option2"
               style={{
                 width: "100%",
-                height: "100%",
+                // height: "32px",
                 color: "#1a1a1a",
                 background: "none",
-                paddingTop: "12px",
+                // paddingTop: "12px",
               }}
             >
               {poll.thatPoll}

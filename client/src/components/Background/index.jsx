@@ -23,7 +23,7 @@ const Background = () => {
       </div>
       </div>
       {/* Invisible div acting as the target for scrolling */}
-      <div id="Polls" style={{ height: "0px", visibility: "hidden" }}></div>
+      <div id="Polls" style={{ height: "0%", visibility: "hidden" }}></div>
     </div>
   );
 };
