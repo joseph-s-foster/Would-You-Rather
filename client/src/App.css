@@ -5,7 +5,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
- html {
+html {
   line-height: 1.15;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -19,6 +19,7 @@
  */
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 /**
@@ -26,6 +27,7 @@ body {
  */
 main {
   display: block;
+  overflow-x: hidden;
 }
 
 /**
@@ -187,9 +189,9 @@ select {
  * Correct the inability to style clickable types in iOS and Safari.
  */
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
 }
 
@@ -197,9 +199,9 @@ button,
  * Remove the inner border and padding in Firefox.
  */
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -208,9 +210,9 @@ button::-moz-focus-inner,
  * Restore the focus styles unset by the previous rule.
  */
 button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -260,8 +262,8 @@ textarea {
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */
-[type='checkbox'],
-[type='radio'] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -271,8 +273,8 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -280,7 +282,7 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type='search'] {
+[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
@@ -290,7 +292,7 @@ textarea {
 /**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
-[type='search']::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -356,11 +358,11 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol';
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   font-size: 16px;
-  background-color: #1a1a1a;
+  background-color: #101114;
   color: #1a1a1a;
 }
 
@@ -370,7 +372,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   margin: 0 0 0.5rem;
   line-height: 1.25;
 }
@@ -401,7 +403,7 @@ h6 {
 
 p {
   font-size: 1.1rem;
-  margin: 0 0 1rem;
+  margin: 0;
   line-height: 1.5;
 }
 
@@ -973,6 +975,69 @@ a:hover {
   display: flex !important;
 }
 
+.background {
+  background-image: url("./assets/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 83.5vh;
+  display: flex;
+  flex-direction: column;
+  z-index: -1000;
+}
+
+.cta {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 39vh;
+  font-size: 2.5rem;
+}
+
+.scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.caret {
+  margin-top: 192px;
+  width: 64px;
+  transform: rotate(90deg);
+  animation: bounce 1.5s infinite; /* Increase duration to include pause */
+}
+
+@keyframes bounce {
+  0%,
+  25% {
+    transform: rotate(90deg) translateY(0); /* Initial position */
+  }
+  50% {
+    transform: rotate(90deg) translateX(-10px); /* Move up */
+  }
+  75% {
+    transform: rotate(90deg) translateY(0); /* Back to initial position */
+  }
+  100% {
+    transform: rotate(90deg) translateY(0); /* Pause */
+  }
+}
+
+@media screen and (max-width: 493px) {
+  .background {
+    min-height: 74.5vh;
+  }
+  .cta {
+    font-size: 2rem;
+  }
+
+  .caret {
+    margin-top: 128px;
+  }
+}
+
 .btn {
   text-align: center;
   display: inline-block;
@@ -1013,7 +1078,7 @@ a:hover {
 }
 
 .btn.btn-primary {
-  background-color: #2d3e50;
+  background-color: #233345;
   color: #d9e9e8;
 }
 
@@ -1115,7 +1180,7 @@ a:hover {
 }
 
 .searchbar {
-width: 75%;
+  width: 75%;
 }
 
 form {
@@ -1151,7 +1216,7 @@ form .form-label {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -1169,7 +1234,7 @@ input[type="password"] {
   color: white;
 }
 
-input{
+input {
   caret-color: white;
   color: white;
 }
@@ -1188,13 +1253,13 @@ form .form-input.form-input-squared {
   border-radius: 2;
 }
 
-form [type='checkbox'],
-form [type='radio'] {
+form [type="checkbox"],
+form [type="radio"] {
   display: inline-block;
 }
 
-label form [type='checkbox'],
-label form [type='radio'] {
+label form [type="checkbox"],
+label form [type="radio"] {
   display: inline-block;
 }
 
@@ -1203,8 +1268,8 @@ button:hover {
 }
 
 .container {
-  width: 85%;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1294,7 +1359,7 @@ button:hover {
   margin-right: -15px;
 }
 
-[class*='col-'] {
+[class*="col-"] {
   position: relative;
   width: 100%;
   /* padding-right: 16px;

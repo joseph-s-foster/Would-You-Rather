@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Auth from "../../utils/auth";
-import SearchBar from "../SearchBar";
 
 const Header = () => {
   const location = useLocation();
@@ -21,8 +20,8 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-black text-light mb-4 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
+    <header className="bg-black text-light flex-row">
+      <div className="container flex-row m-4 justify-space-between-sm justify-center align-center">
         <div>
           <Link className="text-light" to="/">
             <h1 className="mb-1">Would You Rather</h1>
@@ -31,7 +30,7 @@ const Header = () => {
             <p></p>
           ) : (
             !isUserPollsPage && !isLoginPage && (
-              <p className="mb-2">Login to create polls and submit data.</p>
+              <p className="mb-2">Login to create polls and submit votes.</p>
             )
           )}
         </div>
