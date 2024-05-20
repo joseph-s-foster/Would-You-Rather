@@ -169,7 +169,7 @@ function PollCard({ poll }) {
 
   const button1 = {
     ...buttonStyle,
-    backgroundColor: "#2d3e50",
+    backgroundColor: "#233345",
   };
 
   const button2 = {

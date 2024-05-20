@@ -45,8 +45,8 @@ const Login = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-4 col-md-6 col-sm-6">
+    <main className="flex-row justify-center mb-4 mx-5 mx-md-0">
+      <div className="col-12 col-lg-4 col-md-6 col-sm-6 col-xs-6">
         <div className="card bg-black" style={{borderRadius: "4px", marginTop: "33%"}}>
           <h2 className="card-header bg-black text-light text-center">Welcome</h2>
           <div className="card-body bg-black text-light">

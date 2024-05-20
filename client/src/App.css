@@ -27,6 +27,7 @@ body {
  */
 main {
   display: block;
+  overflow-x: hidden;
 }
 
 /**
@@ -361,7 +362,7 @@ body {
     Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   font-size: 16px;
-  background-color: #1a1a1a;
+  background-color: #101114;
   color: #1a1a1a;
 }
 
@@ -979,7 +980,7 @@ a:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 85vh;
+  min-height: 83.5vh;
   display: flex;
   flex-direction: column;
   z-index: -1000;
@@ -990,43 +991,50 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 58vh;
-  font-size: 5rem;
+  margin-top: 39vh;
+  font-size: 2.5rem;
 }
 
 .scroll {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .caret {
+  margin-top: 192px;
   width: 64px;
   transform: rotate(90deg);
+  animation: bounce 1.5s infinite; /* Increase duration to include pause */
 }
 
-@media screen and (max-width: 1000px) {
-  .cta {
-    font-size: 4rem;
+@keyframes bounce {
+  0%,
+  25% {
+    transform: rotate(90deg) translateY(0); /* Initial position */
+  }
+  50% {
+    transform: rotate(90deg) translateX(-10px); /* Move up */
+  }
+  75% {
+    transform: rotate(90deg) translateY(0); /* Back to initial position */
+  }
+  100% {
+    transform: rotate(90deg) translateY(0); /* Pause */
   }
 }
 
-@media screen and (max-width: 680px) {
-  .cta {
-    font-size: 3rem;
-  }
-}
-
-@media screen and (max-width: 524px) {
+@media screen and (max-width: 493px) {
   .background {
-    min-height: 80vh;
+    min-height: 74.5vh;
   }
   .cta {
-    margin-top: 95%;
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
+
   .caret {
-    width: 48px;
+    margin-top: 128px;
   }
 }
 
@@ -1070,7 +1078,7 @@ a:hover {
 }
 
 .btn.btn-primary {
-  background-color: #2d3e50;
+  background-color: #233345;
   color: #d9e9e8;
 }
 
