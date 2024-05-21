@@ -27,7 +27,7 @@ const Header = () => {
             <h1 className="mb-1">Would You Rather</h1>
           </Link>
           {Auth.loggedIn() ? (
-            <p></p>
+            <p className="mb-2">Select User Polls to begin.</p>
           ) : (
             !isUserPollsPage && !isLoginPage && (
               <p className="mb-2">Login to create polls and submit votes.</p>
@@ -46,7 +46,7 @@ const Header = () => {
                   User Polls
                 </Link>
               )}
-              <button className="btn btn-lg btn-light ml-2" onClick={logout}>
+              <button className="btn btn-lg btn-light ml-2 mr-4" onClick={logout}>
                 Logout
               </button>
             </>
