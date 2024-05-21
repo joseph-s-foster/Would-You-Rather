@@ -1025,6 +1025,16 @@ a:hover {
   }
 }
 
+@media screen and (max-width: 671px) {
+  .background {
+    min-height: 74.5vh;
+  }
+  .cta {
+    font-size: 2rem;
+    margin-top: 25vh;
+  }
+}
+
 @media screen and (max-width: 493px) {
   h1 {
     font-size: 1.75rem;
@@ -1034,11 +1044,21 @@ a:hover {
   }
   .cta {
     margin-top: 25vh;
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .caret {
-    margin-top: 120px;
+    margin-top: 160px;
+  }
+}
+
+.create {
+  width: 33%;
+}
+
+@media screen and (max-width: 992px) {
+  .create {
+    width: 320px;
   }
 }
 
