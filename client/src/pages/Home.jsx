@@ -59,7 +59,9 @@ const Home = () => {
   return (
     <>
     <Background />
-      <main className="d-flex flex-column align-items-center">
+      <main className="d-flex flex-column align-items-center" style={{zIndex: "-10000", marginTop: "85vh",}}>
+            {/* Invisible div acting as the target for scrolling */}
+      <div id="Polls" style={{ height: "0%", visibility: "hidden" }}></div>
         <div className="row m-4">
           <h3 className="text-light m-4">Polls</h3>
           <div className="col-auto">
