@@ -980,18 +980,21 @@ a:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 83.5vh;
-  display: flex;
-  flex-direction: column;
-  z-index: -1000;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
 
 .cta {
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 39vh;
+  text-align: center;
+  margin-top: 50vh;
   font-size: 2.5rem;
 }
 
@@ -1003,7 +1006,7 @@ a:hover {
 }
 
 .caret {
-  margin-top: 192px;
+  margin-top: 224px;
   width: 64px;
   transform: rotate(90deg);
   animation: bounce 1.5s infinite; /* Increase duration to include pause */
@@ -1026,24 +1029,24 @@ a:hover {
 }
 
 @media screen and (max-width: 671px) {
-  .background {
-    min-height: 74.5vh;
-  }
   .cta {
     font-size: 2rem;
-    margin-top: 25vh;
+    margin-top: 50vh;
   }
 }
 
 @media screen and (max-width: 493px) {
+  .mobileheader {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
   h1 {
     font-size: 1.75rem;
   }
-  .background {
-    min-height: 75.5vh;
-  }
   .cta {
-    margin-top: 25vh;
+    text-align: center;
+    margin-top: 50vh;
     font-size: 1.75rem;
   }
 

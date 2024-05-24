@@ -17,6 +17,8 @@
     "concurrently": "^8.2.0"
   },
   "dependencies": {
-    "lsof": "^0.1.0"
+    "lsof": "^0.1.0",
+    "punycode": "^2.3.1",
+    "tr46": "^5.0.0"
   }
 }
