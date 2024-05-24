@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header className="bg-black text-light flex-row" style={{ zIndex: "10",}}>
-      <div className="container flex-row m-4 justify-space-between-sm justify-center align-center">
+      <div className="mobileheader container flex-row m-4 justify-space-between-sm justify-center align-center">
         <div>
           <Link className="text-light" to="/">
             <h1 className="mb-1">Would You Rather</h1>
