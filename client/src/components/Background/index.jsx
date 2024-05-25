@@ -5,7 +5,7 @@ import caret from "../../assets/caret.svg";
 const handleScroll = (event) => {
   event.preventDefault();
 
-  const projectsContainer = document.getElementById("Polls"); // Corrected the id
+  const projectsContainer = document.getElementById("Polls");
   if (projectsContainer) {
     projectsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
   }

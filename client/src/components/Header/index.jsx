@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <header className="bg-black text-light flex-row" style={{ zIndex: "10",}}>
       <div className="mobileheader container flex-row m-4 justify-space-between-sm justify-center align-center">
-        <div>
+      <div className="ml-2 mr-2">
           <Link className="text-light" to="/">
             <h1 className="mb-1">Would You Rather</h1>
           </Link>
@@ -34,7 +34,7 @@ const Header = () => {
             )
           )}
         </div>
-        <div>
+        <div className="mobilebuttons">
           {Auth.loggedIn() ? (
             <>
               {isUserPollsPage ? (
@@ -46,7 +46,7 @@ const Header = () => {
                   User Polls
                 </Link>
               )}
-              <button className="btn btn-lg btn-light ml-2 mr-4" onClick={logout}>
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
                 Logout
               </button>
             </>
@@ -54,7 +54,7 @@ const Header = () => {
             // Render the "Login" button or "Home" button based on the page
             !isUserPollsPage && (
               <Link
-                className="btn btn-lg btn-primary m-2"
+                className="btn btn-lg btn-primary m-2 ml-5"
                 to={isLoginPage ? "/" : "/login"}
               >
                 {isLoginPage ? "Home" : "Login"}
