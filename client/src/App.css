@@ -1001,7 +1001,7 @@ a:hover {
 
 .scroll {
   position: absolute;
-  bottom: 80px;
+  bottom: 32px;
   text-align: center;
   width: 100%;
 }
@@ -1047,6 +1047,9 @@ a:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
+  }
+  .scroll {
+    bottom: 128px;
   }
 }
 
