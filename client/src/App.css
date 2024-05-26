@@ -994,7 +994,7 @@ a:hover {
 }
 
 .cta {
-  color: #ffffff;
+  color: #d9e9e8;
   font-size: 4rem;
   text-align: center;
 }
@@ -1008,6 +1008,7 @@ a:hover {
 
 .caret {
   width: 64px;
+  color: #d9e9e8;
   transform: rotate(90deg);
   animation: bounce 1.5s infinite; /* Increase duration to include pause */
 }
@@ -1037,7 +1038,7 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 609px) {
+@media screen and (max-width: 497px) {
   .mobileheader {
     justify-content: center;
     align-items: center;
