@@ -10,6 +10,7 @@ html {
   line-height: 1.15;
   /* 1 */
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
   /* 2 */
 }
 
@@ -1075,6 +1076,14 @@ a:hover {
 
 .btn:hover {
   background-color: #cecece;
+}
+
+.vote1:hover {
+  background-color:  #57779a !important;
+}
+
+.vote2:hover {
+  background-color: #ffffff !important;
 }
 
 .btn.btn-squared {
