@@ -109,7 +109,7 @@ function PollCard({ poll }) {
     display: "flex",
     flexDirection: "column",
     width: "320px",
-    height: "160px",
+    height: "166px",
     // border: "1px solid #e64c66",
     borderRadius: "4px",
     backgroundColor: "#000",
@@ -154,7 +154,7 @@ function PollCard({ poll }) {
   const buttonContainerStyle = {
     display: "flex",
     flexDirection: "column",
-    flexGrow: 1,
+    // flexGrow: 1,
   };
 
   const buttonStyle = {
@@ -163,7 +163,7 @@ function PollCard({ poll }) {
     justifyContent: "center",
     margin: "4px",
     cursor: "pointer",
-    borderRadius: "2px",
+    borderRadius: "3px",
     width: "97%",
   };
 
@@ -212,11 +212,14 @@ function PollCard({ poll }) {
                       style={{ width: "18px", height: "18px" }}
                     />
                   </button>
-                  <button onClick={handleCancelEdit}>   <img
+                  <button onClick={handleCancelEdit}>
+                    {" "}
+                    <img
                       src={"/x-circle.svg"}
                       alt="cancel"
                       style={{ width: "18px", height: "18px" }}
-                    /></button>
+                    />
+                  </button>
                 </>
               ) : (
                 // Render edit and delete buttons when not in edit mode
@@ -246,15 +249,16 @@ function PollCard({ poll }) {
         <div style={buttonContainerStyle}>
           <div style={button1}>
             <button
+              className="vote1 btn-primary"
               disabled={!loggedIn}
               onClick={() => handleVote("Option1")}
               value="Option1"
               style={{
                 width: "100%",
-                // height: "32px",
+                border: "none",
                 color: "#fff",
+                padding: "4px",
                 background: "none",
-                // paddingTop: "12px",
               }}
             >
               {" "}
@@ -264,15 +268,16 @@ function PollCard({ poll }) {
           </div>
           <div style={button2}>
             <button
+              className="vote2 btn-light"
               disabled={!loggedIn}
               onClick={() => handleVote("Option2")}
               value="Option2"
               style={{
                 width: "100%",
-                // height: "32px",
+                border: "none",
                 color: "#1a1a1a",
+                padding: "4px",
                 background: "none",
-                // paddingTop: "12px",
               }}
             >
               {poll.thatPoll}
