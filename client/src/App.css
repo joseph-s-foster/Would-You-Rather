@@ -5,7 +5,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
- 
+
 html {
   line-height: 1.15;
   /* 1 */
@@ -1079,7 +1079,7 @@ a:hover {
 }
 
 .vote1:hover {
-  background-color:  #57779a !important;
+  background-color: #57779a !important;
 }
 
 .vote2:hover {
@@ -1331,6 +1331,12 @@ button:hover {
 footer {
   margin: 24px 5% 0 5%;
   border-top: solid 1px #d9e9e8;
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+  margin: 24px 10% 0 10%;
+  }
 }
 
 .justify-space-between {

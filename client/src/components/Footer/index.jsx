@@ -1,24 +1,22 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowUpCircleIcon, HomeModernIcon } from "@heroicons/react/24/outline";
+import { ArrowUpCircleIcon, HomeModernIcon } from "@heroicons/react/24/solid";
 
 const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleScroll = (event) => {
+    event.preventDefault();
+
+    const topContainer = document.getElementById("top");
+    if (topContainer) {
+      topContainer.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer>
       <div className="container text-center mb-5">
-        {/* <h4 style={{ color: "#FFF" }}>
-          Made with{" "}
-          <span
-            className="emoji"
-            role="img"
-            aria-label="heart"
-            aria-hidden="false"
-          >
-            ❤️
-          </span>{" "}
-          by Group1
-        </h4> */}
         <div
           style={{
             display: "flex",
@@ -27,24 +25,24 @@ const Footer = () => {
             padding: "48px 0 48px 0",
           }}
         >
-          <a style={{ cursor: "pointer" }}>
+          <a href="./" style={{ cursor: "pointer" }}>
             <HomeModernIcon
               style={{
-                margin: "2px 0 0 0",
+                margin: "4px 4px 0 0",
                 color: "fff",
-                height: "48px",
-                width: "48px",
+                height: "40px",
+                width: "40px",
               }}
               aria-hidden="true"
             />
           </a>
-          <a style={{ cursor: "pointer" }}>
+          <a href="#top" onClick={handleScroll} style={{ cursor: "pointer" }}>
             <ArrowUpCircleIcon
               style={{
-                margin: "2px 48px 0 48px",
+                margin: "2 64px 0 64px",
                 color: "fff",
-                height: "54px",
-                width: "54px",
+                height: "46px",
+                width: "46px",
               }}
               aria-hidden="true"
             />
@@ -57,7 +55,7 @@ const Footer = () => {
             <img
               src="./github.png"
               alt="github logo"
-              style={{ margin: "2px 5px 0 5px", height: "43px", width: "43px" }}
+              style={{ margin: "0 4px 0 4px", height: "37px", width: "37px" }}
             />
           </a>
         </div>
