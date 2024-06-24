@@ -20,18 +20,20 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-black text-light flex-row" style={{ zIndex: "10",}}>
+    <header className="bg-black text-light flex-row" style={{ zIndex: "10" }}>
       <div className="mobileheader container flex-row m-4 justify-space-between-sm justify-center align-center">
-      <div className="ml-2 mr-2">
+        <div className="ml-2 mr-2">
           <Link className="text-light" to="/">
             <h1 className="mb-1">Would You Rather</h1>
           </Link>
-          {Auth.loggedIn() ? (
+          {Auth.loggedIn() && !isUserPollsPage ? (
             <p className="mb-2">Select User Polls to begin.</p>
+          ) : isUserPollsPage ? (
+            <p className="mb-2">Enter poll info, then select submit.</p>
+          ) : isLoginPage ? (
+            <p className="mb-2">Enter user info, then select Login or Signup.</p>
           ) : (
-            !isUserPollsPage && !isLoginPage && (
-              <p className="mb-2">Login to create polls and submit votes.</p>
-            )
+            <p className="mb-2">Login to create polls and submit votes.</p>
           )}
         </div>
         <div className="mobilebuttons">
