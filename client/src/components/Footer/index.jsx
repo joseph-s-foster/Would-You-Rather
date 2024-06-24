@@ -4,7 +4,7 @@ const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
   return (
-    <footer className="w-100 mt-auto p-4">
+    <footer>
       <div className="container text-center mb-5">
         {/* <h4 style={{ color: "#FFF" }}>
           Made with{" "}
@@ -26,9 +26,10 @@ const Footer = () => {
           <img
             src="./github.png"
             alt="github logo"
-            style={{ height: "48px", width: "48px" }}
+            style={{ margin: "48px", height: "40px", width: "40px" }}
           />
         </a>
+        <p style={{ color: "#d9e9e8"}}>Copyright &copy; 2024 Would You Rather</p>
       </div>
     </footer>
   );

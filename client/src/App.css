@@ -1008,7 +1008,7 @@ a:hover {
 }
 
 .caret {
-  width: 64px;
+  width: 40px;
   color: #d9e9e8;
   transform: rotate(90deg);
   animation: bounce 1.5s infinite; /* Increase duration to include pause */
@@ -1326,6 +1326,11 @@ button:hover {
 
 .flex-no-wrap {
   flex-wrap: nowrap;
+}
+
+footer {
+  margin: 24px 5% 0 5%;
+  border-top: solid 1px #d9e9e8;
 }
 
 .justify-space-between {
