@@ -29,9 +29,9 @@ const Header = () => {
           {Auth.loggedIn() && !isUserPollsPage ? (
             <p className="mb-2">Select User Polls to begin.</p>
           ) : isUserPollsPage ? (
-            <p className="mb-2">Enter poll info, then select submit.</p>
+            <p className="mb-2">Enter poll info and select submit.</p>
           ) : isLoginPage ? (
-            <p className="mb-2">Enter user info, then select Login or Signup.</p>
+            <p className="mb-2">Enter user info and select Login or Signup.</p>
           ) : (
             <p className="mb-2">Login to create polls and submit votes.</p>
           )}
