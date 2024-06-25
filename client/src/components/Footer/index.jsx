@@ -1,21 +1,37 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpCircleIcon, HomeModernIcon } from "@heroicons/react/24/solid";
+import { useState, useEffect } from "react";
 
 const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [isLoginPage, setIsLoginPage] = useState(false);
+
+  useEffect(() => {
+    setIsLoginPage(location.pathname === "/login");
+  }, [location.pathname]);
+
   const handleScroll = (event) => {
     event.preventDefault();
-
     const topContainer = document.getElementById("top");
     if (topContainer) {
       topContainer.scrollIntoView({ behavior: "smooth" });
     }
   };
 
+  // Define the dynamic style for the footer based on the current page
+  const footerStyle = isLoginPage
+    ? {
+        position: "absolute",
+        bottom: "0",
+        left: "0",
+        right: "0",
+      }
+    : {};
+
   return (
-    <footer>
+    <footer style={footerStyle}>
       <div className="container text-center mb-5">
         <div
           style={{
@@ -25,11 +41,11 @@ const Footer = () => {
             padding: "48px 0 48px 0",
           }}
         >
-          <a href="./" style={{ cursor: "pointer" }}>
+          <a onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
             <HomeModernIcon
               style={{
                 margin: "4px 4px 0 0",
-                color: "fff",
+                color: "#fff",
                 height: "40px",
                 width: "40px",
               }}
@@ -39,8 +55,8 @@ const Footer = () => {
           <a href="#top" onClick={handleScroll} style={{ cursor: "pointer" }}>
             <ArrowUpCircleIcon
               style={{
-                margin: "2 64px 0 64px",
-                color: "fff",
+                margin: "2px 64px 0 64px",
+                color: "#fff",
                 height: "46px",
                 width: "46px",
               }}
