@@ -8,7 +8,7 @@ export default function Polls() {
   
   if (!polls.length) {
     return (
-      <h3 className="d-flex flex-column mt-4 ml-4 align-items-center justify-content-center col-lg-12" style={{color: "#d9e9e8"}}>
+      <h3 className="d-flex flex-column mt-4 col-lg-12" style={{textAlign: "center", color: "#d9e9e8"}}>
         No polls yet
       </h3>
     );
