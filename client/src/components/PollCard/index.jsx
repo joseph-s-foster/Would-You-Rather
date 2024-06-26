@@ -109,7 +109,7 @@ function PollCard({ poll }) {
     display: "flex",
     flexDirection: "column",
     width: "320px",
-    height: "166px",
+    height: "170px",
     // border: "1px solid #e64c66",
     borderRadius: "4px",
     backgroundColor: "#000",
@@ -131,7 +131,7 @@ function PollCard({ poll }) {
   const editButtonStyle = {
     background: "#000",
     position: "absolute",
-    top: "6px",
+    top: "8px",
     left: "1px",
     border: "none",
     cursor: "pointer",
@@ -145,7 +145,7 @@ function PollCard({ poll }) {
   const deleteButtonStyle = {
     background: "#000",
     position: "absolute",
-    top: "4px",
+    top: "8px",
     right: "1px",
     border: "none",
     cursor: "pointer",
@@ -153,6 +153,7 @@ function PollCard({ poll }) {
 
   const buttonContainerStyle = {
     display: "flex",
+    alignItems: "center",
     flexDirection: "column",
     // flexGrow: 1,
   };
@@ -160,11 +161,11 @@ function PollCard({ poll }) {
   const buttonStyle = {
     // flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     margin: "4px",
     cursor: "pointer",
     borderRadius: "3px",
-    width: "97%",
+    width: "94%",
   };
 
   const button1 = {

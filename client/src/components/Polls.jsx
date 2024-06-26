@@ -19,8 +19,8 @@ export default function Polls() {
 
   return (
     <div className="col-lg-12 p-2">
-      <h3 className="text-light d-flex m-4 flex-column align-items-center justify-content-center">
-        User polls
+      <h3 className="d-flex flex-column col-lg-12" style={{ margin: "60px 0 60px 0", textAlign: "center", color: "#d9e9e8"}}>
+        User Polls
       </h3>
       <div className="row justify-content-center">
         {polls.map((poll, index) => (

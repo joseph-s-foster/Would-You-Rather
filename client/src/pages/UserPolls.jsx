@@ -73,7 +73,7 @@ const PollForm = () => {
         <>
           <div
             className="create display-flex bg-black p-2 mx-auto"
-            style={{ borderRadius: "4px", marginTop: "32px"}}
+            style={{ borderRadius: "5px", marginTop: "5%"}}
           >
             <form className="col-lg-12" onSubmit={handleFormSubmit}>
               <h3 className="text-light">Create poll</h3>
