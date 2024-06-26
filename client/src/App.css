@@ -1329,14 +1329,8 @@ button:hover {
 }
 
 footer {
-  margin: 24px 5% 0 5%;
-  border-top: solid 1px #d9e9e8;
-}
-
-@media screen and (max-width: 768px) {
-  footer {
-  margin: 24px 10% 0 10%;
-  }
+  margin: 32px 0 0 0;
+  background-color: #000;
 }
 
 .justify-space-between {

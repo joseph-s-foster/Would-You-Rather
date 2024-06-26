@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpCircleIcon, HomeModernIcon } from "@heroicons/react/24/solid";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const Footer = () => {
   const location = useLocation();
@@ -23,9 +23,11 @@ const Footer = () => {
   };
 
   // Defines the footer display based on the current page
-  const footerStyle = isLoginPage ? {
-  display: "none"
-  } : {};
+  const footerStyle = isLoginPage
+    ? {
+        display: "none",
+      }
+    : {};
 
   return (
     <footer style={footerStyle}>
@@ -35,16 +37,16 @@ const Footer = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            padding: "48px 0 48px 0",
+            padding: "32px 0 32px 0",
           }}
         >
           <a onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
             <HomeModernIcon
               style={{
-                margin: "4px 4px 0 0",
+                margin: "4px 7px 0 0",
                 color: "#fff",
-                height: "40px",
-                width: "40px",
+                height: "32px",
+                width: "32px",
               }}
               aria-hidden="true"
             />
@@ -54,8 +56,8 @@ const Footer = () => {
               style={{
                 margin: "2px 64px 0 64px",
                 color: "#fff",
-                height: "46px",
-                width: "46px",
+                height: "38px",
+                width: "38px",
               }}
               aria-hidden="true"
             />
@@ -68,13 +70,15 @@ const Footer = () => {
             <img
               src="./github.png"
               alt="github logo"
-              style={{ margin: "0 4px 0 4px", height: "37px", width: "37px" }}
+              style={{ margin: "0 4px 0 4px", height: "30px", width: "30px" }}
             />
           </a>
         </div>
-        <p style={{ marginBottom: "48px", color: "#d9e9e8" }}>
-          Copyright &copy; 2024 Would You Rather
-        </p>
+        <div>
+          <p style={{ marginBottom: "48px", color: "#d9e9e8" }}>
+            Copyright &copy; 2024 Would You Rather
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import Background from "../components/Background";
 import PollCard from "../components/PollCard";
 import { GET_POLLS_QUERY } from "../utils/queries";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchBar from "../components/SearchBar";
-
 
 const Home = () => {
   const { loading, data } = useQuery(GET_POLLS_QUERY, { pollInterval: 1000 });
@@ -15,6 +14,9 @@ const Home = () => {
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
+    // Scroll to the top on mount
+    window.scrollTo(0, 0);
+
     // Check for mobile view and adjust itemsPerPage
     const handleResize = () => {
       setItemsPerPage(window.innerWidth <= 768 ? 3 : 9);
@@ -44,8 +46,6 @@ const Home = () => {
 
   const handlePageChange = (newPage) => {
     setCurrPage(newPage);
-    // Reset the search input when the page changes
-    // setSearchInput("");
   };
 
   const handleSearchChange = (event) => {
@@ -58,10 +58,12 @@ const Home = () => {
 
   return (
     <>
-    <Background />
-      <main className="d-flex flex-column align-items-center" style={{zIndex: "-10000", marginTop: "85vh",}}>
-            {/* Invisible div acting as the target for scrolling */}
-      <div id="Polls" style={{ height: "0%", visibility: "hidden" }}></div>
+      <Background />
+      <main
+        className="d-flex flex-column align-items-center"
+        style={{ zIndex: "-10000", marginTop: "85vh" }}
+      >
+        <div id="Polls" style={{ height: "0%", visibility: "hidden" }}></div>
         <div className="row m-4">
           <h3 className="text-light m-4">Polls</h3>
           <div className="col-auto">
