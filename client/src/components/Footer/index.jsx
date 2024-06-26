@@ -1,14 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpCircleIcon, HomeModernIcon } from "@heroicons/react/24/solid";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [isUserPollsPage, setIsUserPollsPage] = useState(false);
   const [isLoginPage, setIsLoginPage] = useState(false);
 
   useEffect(() => {
+    setIsUserPollsPage(location.pathname === "/user-polls");
     setIsLoginPage(location.pathname === "/login");
   }, [location.pathname]);
 
@@ -21,14 +23,14 @@ const Footer = () => {
   };
 
   // Define the dynamic style for the footer based on the current page
-  const footerStyle = isLoginPage
-    ? {
-        position: "absolute",
-        bottom: "0",
-        left: "0",
-        right: "0",
-      }
-    : {};
+  const footerStyle = isLoginPage ? {
+    position: "absolute",
+    bottom: "0",
+    left: "0",
+    right: "0"
+  } : isUserPollsPage ? {
+    marginTop: ''
+} : {};
 
   return (
     <footer style={footerStyle}>
